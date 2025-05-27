@@ -130,6 +130,119 @@
             color: #4f46e5;
         }
 
+        /* Resume Download Button */
+        .resume-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .resume-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+        }
+
+        .resume-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Images Section */
+        .images-section {
+            padding: 80px 0 60px;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .image-card:hover::before {
+            left: 100%;
+        }
+
+        .image-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
+            border-color: #4f46e5;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .image-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .image-description {
+            color: #94a3b8;
+            text-align: center;
+            line-height: 1.6;
+        }
+
         /* Stats Section */
         .stats-section {
             padding: 60px 0;
@@ -408,6 +521,10 @@
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .images-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -452,8 +569,44 @@
                     <span>College Park, USA</span>
                 </div>
             </div>
+            <div class="resume-section">
+                <a href="#" class="resume-button" onclick="downloadResume()">
+                    <i class="fas fa-download"></i>
+                    Download Resume
+                </a>
+            </div>
         </div>
     </header>
+
+    <!-- Images Section -->
+    <section class="images-section">
+        <div class="container">
+            <h2 class="section-title">Project Showcases</h2>
+            <div class="images-grid">
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="image-title">Plant Disease Detection</h3>
+                    <p class="image-description">AI-powered system for identifying plant diseases using advanced computer vision techniques with high accuracy.</p>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <h3 class="image-title">Model Compression</h3>
+                    <p class="image-description">Efficient model compression pipeline reducing BERT size while maintaining performance for edge deployment.</p>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="image-title">Analytics Dashboard</h3>
+                    <p class="image-description">Interactive data visualization platform for EV charging infrastructure analysis with geospatial insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Stats Section -->
     <section class="stats-section">
@@ -612,10 +765,10 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://github.com/yaxitaamin" class="social-link" target="_blank">
+                <a href="https://github.com/YaxitaAmin" class="social-link" target="_blank">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://linkedin.com/in/yaxitaamin" class="social-link" target="_blank">
+                <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="social-link" target="_blank">
                     <i class="fab fa-linkedin"></i>
                 </a>
                 <a href="mailto:yaxita@umd.edu" class="social-link">
@@ -653,17 +806,23 @@
             }
         }
 
-        // GitHub redirect function
+        // Resume download function
+        function downloadResume() {
+            // You can replace this with an actual resume file URL
+            alert('Resume download functionality would be implemented here. Please add the actual resume file URL.');
+            // Example: window.open('path/to/resume.pdf', '_blank');
+        }
+
+        // GitHub redirect function with updated URLs
         function redirectToGitHub(projectName) {
-            // Replace with actual GitHub repository URLs
             const githubUrls = {
-                'leafdoctorai': 'https://github.com/yaxitaamin/leafdoctorai',
-                'bert-compression': 'https://github.com/yaxitaamin/bert-compression-suite',
-                'ev-charging-analytics': 'https://github.com/yaxitaamin/ev-charging-analytics',
-                'memory-profiler': 'https://github.com/yaxitaamin/ml-memory-profiler'
+                'leafdoctorai': 'https://github.com/YaxitaAmin/LeafDoctorAI',
+                'bert-compression': 'https://github.com/YaxitaAmin/Modelcompressionsuite',
+                'ev-charging-analytics': 'https://github.com/YaxitaAmin/EV-Analytics',
+                'memory-profiler': 'https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels'
             };
 
-            const url = githubUrls[projectName] || 'https://github.com/yaxitaamin';
+            const url = githubUrls[projectName] || 'https://github.com/YaxitaAmin';
             window.open(url, '_blank');
         }
 
@@ -699,8 +858,8 @@
             });
         }, observerOptions);
 
-        // Observe project cards for animation
-        document.querySelectorAll('.project-card, .stat-item, .skill-item').forEach(el => {
+        // Observe elements for animation
+        document.querySelectorAll('.project-card, .stat-item, .skill-item, .image-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
