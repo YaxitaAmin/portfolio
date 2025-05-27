@@ -3,391 +3,709 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaxita Amin - ML Engineer</title>
+    <title>Yaxita Amin - ML Engineer & AI Researcher</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        
+
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-        }
-        
-        .header .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-        
-        .contact {
-            font-size: 1rem;
-            color: #666;
-        }
-        
-        .contact a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        
-        /* Key Results Section */
-        .results {
-            margin-bottom: 60px;
-        }
-        
-        .results h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        
-        .result-item {
-            text-align: center;
-        }
-        
-        .result-image {
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 250px;
-            background: #f5f5f5;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(100, 200, 255, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-section {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
-            color: #666;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        
-        .result-image:hover {
-            transform: translateY(-5px);
-        }
-        
-        .result-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-        }
-        
-        .result-stats {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.4;
-        }
-        
-        .highlight {
-            font-weight: 700;
-            color: #d73527;
-        }
-        
-        /* Projects Section */
-        .projects {
-            margin-bottom: 50px;
-        }
-        
-        .projects h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .project {
-            margin-bottom: 25px;
-            padding: 25px;
-            border-left: 4px solid #0066cc;
-            background: #fafafa;
-        }
-        
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-        
-        .project-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .project-date {
-            font-size: 0.9rem;
-            color: #666;
-            white-space: nowrap;
-        }
-        
-        .project-desc {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 12px;
-        }
-        
-        .tech-stack {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        
-        .github-link {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .github-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* Bottom Section */
-        .bottom {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-        }
-        
-        .skills h3, .education h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-        }
-        
-        .skills-list {
-            display: flex;
+            gap: 60px;
             flex-wrap: wrap;
-            gap: 10px;
+            margin-bottom: 40px;
         }
-        
-        .skill {
-            background: #f0f0f0;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: #333;
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed, #ec4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: profileGlow 3s ease-in-out infinite alternate;
         }
-        
-        .education-item {
+
+        @keyframes profileGlow {
+            0% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+            100% { box-shadow: 0 20px 60px rgba(79, 70, 229, 0.4); }
+        }
+
+        .profile-info {
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 1.4rem;
+            color: #94a3b8;
             margin-bottom: 20px;
         }
-        
-        .edu-degree {
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #94a3b8;
+        }
+
+        .contact-item i {
+            color: #4f46e5;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: rgba(15, 15, 35, 0.5);
+            backdrop-filter: blur(10px);
+            margin: 40px 0;
+            border-radius: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
+            border-color: #4f46e5;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            color: #4f46e5;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
             font-weight: 600;
-            font-size: 1rem;
-            color: #1a1a1a;
+            margin-bottom: 15px;
         }
-        
-        .edu-school {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 3px;
+
+        .project-description {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-        
-        .edu-date {
-            color: #888;
-            font-size: 0.85rem;
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
         }
-        
+
+        .tech-tag {
+            background: rgba(79, 70, 229, 0.2);
+            color: #a78bfa;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #7c3aed;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 80px 0;
+            background: rgba(15, 15, 35, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            background: rgba(79, 70, 229, 0.1);
+            border-color: #4f46e5;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #4f46e5;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: #4f46e5;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(79, 70, 229, 0.3);
+            border-top: 3px solid #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .results-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .bottom {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-header {
+            .profile-section {
                 flex-direction: column;
-                align-items: flex-start;
+                gap: 30px;
             }
-            
-            .project-date {
-                margin-top: 5px;
+
+            .profile-info {
+                text-align: center;
+            }
+
+            .name {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>Yaxita Amin</h1>
-            <div class="subtitle">ML Engineer | M.S. Machine Learning @ UMD</div>
-            <div class="contact">
-                <a href="mailto:yaxita@umd.edu">yaxita@umd.edu</a> • 240-791-2848 • College Park, USA
-            </div>
-        </div>
-
-        <!-- Key Results -->
-        <div class="results">
-            <h2>Key Results</h2>
-            <div class="results-grid">
-                <div class="result-item">
-                    <div class="result-image" onclick="window.open('https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels', '_blank')">
-                        <img src="figure1.png" alt="Memory Profiling Dashboard" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
-                    </div>
-                    <div class="result-title">ML Memory Profiler</div>
-                    <div class="result-stats">
-                        <span class="highlight">4.3x</span> memory efficiency improvement<br>
-                        <span class="highlight">60%</span> lower memory footprint with PyTorch<br>
-                        Interactive Streamlit dashboard
-                    </div>
-                </div>
-                <div class="result-item">
-                    <div class="result-image" onclick="window.open('https://github.com/YaxitaAmin/EV-Analytics', '_blank')">
-                        <img src="figure2.png" alt="EV Charging Analytics" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
-                    </div>
-                    <div class="result-title">EV Charging Analytics</div>
-                    <div class="result-stats">
-                        <span class="highlight">30+</span> Years of data analysis<br>
-                        <span class="highlight">10+</span> State-wise filters<br>
-                        Geospatial visualization dashboard
-                    </div>
-                </div>
-                <div class="result-item">
-                    <div class="result-image" onclick="window.open('https://github.com/YaxitaAmin/LeafDoctorAI', '_blank')">
-                        <img src="figure.jpg" alt="Research U-Net Modification Proposed Illustration" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
-                    </div>
-                    <div class="result-title">Research U-Net Modification Proposed Illustration</div>
-                    <div class="result-stats">
-                        <span class="highlight">18 U-Net</span> modification figure in one<br>
-                        Different sections of modifications<br>
-                        Published research illustration
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projects -->
-        <div class="projects">
-            <h2>Projects</h2>
-            
-            <div class="project">
-                <div class="project-header">
-                    <div class="project-title">Virtual Memory Profiling for ML Models</div>
-                    <div class="project-date">May 2025</div>
-                </div>
-                <div class="project-desc">
-                    Memory profiling tool analyzing TensorFlow vs PyTorch usage patterns. Identified 4.3x memory efficiency gains and PyTorch's 60% lower memory footprint through interactive dashboard.
-                </div>
-                <div class="tech-stack">
-                    <strong>Tech:</strong> Python, TensorFlow, PyTorch, Streamlit, memory_profiler
-                </div>
-                <a href="https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels" class="github-link" target="_blank">View on GitHub →</a>
-            </div>
-
-            <div class="project">
-                <div class="project-header">
-                    <div class="project-title">EV Charging Infrastructure Analytics</div>
-                    <div class="project-date">Feb 2025</div>
-                </div>
-                <div class="project-desc">
-                    Interactive dashboard analyzing U.S. EV charging infrastructure (1995-2025). Geospatial visualizations revealing distribution patterns across urban/rural regions using DOE dataset.
-                </div>
-                <div class="tech-stack">
-                    <strong>Tech:</strong> Python, Tableau, Geospatial Libraries, DOE Dataset
-                </div>
-                <a href="https://github.com/YaxitaAmin/EV-Analytics" class="github-link" target="_blank">View on GitHub →</a>
-            </div>
-
-            <div class="project">
-                <div class="project-header">
-                    <div class="project-title">BERT Model Compression Suite</div>
-                    <div class="project-date">Jan 2025</div>
-                </div>
-                <div class="project-desc">
-                    Compression pipeline reducing BERT model size by 80% (440MB → 90MB) while maintaining 91.5% performance. AWS deployment with 47% faster inference and 69.2% training time reduction.
-                </div>
-                <div class="tech-stack">
-                    <strong>Tech:</strong> PyTorch, Transformers, AWS EC2, Weights & Biases
-                </div>
-                <a href="https://github.com/YaxitaAmin/Modelcompressionsuite" class="github-link" target="_blank">View on GitHub →</a>
-            </div>
-
-            <div class="project">
-                <div class="project-header">
-                    <div class="project-title">LeafDoctorAI: Plant Disease Detection</div>
-                    <div class="project-date">Nov 2024</div>
-                </div>
-                <div class="project-desc">
-                    Plant disease detection system using MobileNetV2 achieving 88.20% accuracy. Comprehensive data augmentation pipeline with transfer learning from ImageNet.
-                </div>
-                <div class="tech-stack">
-                    <strong>Tech:</strong> TensorFlow, MobileNetV2, Transfer Learning, Data Augmentation
-                </div>
-                <a href="https://github.com/YaxitaAmin/LeafDoctorAI" class="github-link" target="_blank">View on GitHub →</a>
-            </div>
-        </div>
-
-        <!-- Skills & Education -->
-        <div class="bottom">
-            <div class="skills">
-                <h3>Technical Skills</h3>
-                <div class="skills-list">
-                    <span class="skill">Python</span>
-                    <span class="skill">PyTorch</span>
-                    <span class="skill">TensorFlow</span>
-                    <span class="skill">Deep Learning</span>
-                    <span class="skill">Machine Learning</span>
-                    <span class="skill">AWS EC2</span>
-                    <span class="skill">SQL</span>
-                    <span class="skill">Docker</span>
-                    <span class="skill">Git</span>
-                    <span class="skill">Tableau</span>
-                    <span class="skill">Streamlit</span>
-                </div>
-            </div>
-
-            <div class="education">
-                <h3>Education</h3>
-                <div class="education-item">
-                    <div class="edu-degree">M.S. Applied Machine Learning</div>
-                    <div class="edu-school">University of Maryland, College Park</div>
-                    <div class="edu-date">2024 - 2026</div>
-                </div>
-                <div class="education-item">
-                    <div class="edu-degree">B.E. Information Technology</div>
-                    <div class="edu-school">Vishwakarma Government Engineering College</div>
-                    <div class="edu-date">2020 - 2024</div>
-                </div>
-            </div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loader"></div>
+            <div class="loading-text">Loading Portfolio...</div>
         </div>
     </div>
+
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">Yaxita Amin</h1>
+                    <h2 class="title">ML Engineer & AI Researcher</h2>
+                    <p class="description">
+                        Hardworking, proactive individual committed to continuous growth in Machine Learning and Artificial Intelligence. Currently pursuing M.S in Applied Machine Learning at University of Maryland.
+                    </p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>yaxita@umd.edu</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 (240) 791-2848</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>College Park, USA</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">88.2%</div>
+                    <div class="stat-label">Best Model Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">Model Size Reduction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.3x</div>
+                    <div class="stat-label">Memory Efficiency Gain</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">60+</div>
+                    <div class="stat-label">Research Papers Analyzed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" onclick="redirectToGitHub('leafdoctorai')">
+                    <div class="project-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="project-title">LeafDoctorAI</h3>
+                    <p class="project-description">
+                        Plant disease detection system using MobileNetV2 architecture achieving 88.20% accuracy with comprehensive data augmentation pipeline.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">MobileNetV2</span>
+                        <span class="tech-tag">Transfer Learning</span>
+                        <span class="tech-tag">Computer Vision</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                </div>
+
+                <div class="project-card" onclick="redirectToGitHub('bert-compression')">
+                    <div class="project-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <h3 class="project-title">BERT Model Compression Suite</h3>
+                    <p class="project-description">
+                        Advanced compression pipeline reducing BERT model size by 80% while maintaining 91.5% performance with 47% lower inference latency.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Transformers</span>
+                        <span class="tech-tag">AWS EC2</span>
+                        <span class="tech-tag">Model Optimization</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                </div>
+
+                <div class="project-card" onclick="redirectToGitHub('ev-charging-analytics')">
+                    <div class="project-icon">
+                        <i class="fas fa-charging-station"></i>
+                    </div>
+                    <h3 class="project-title">EV Charging Infrastructure Analytics</h3>
+                    <p class="project-description">
+                        Interactive dashboard analyzing U.S. EV charging infrastructure with geospatial visualizations revealing distribution patterns.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Tableau</span>
+                        <span class="tech-tag">Geospatial Analysis</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                </div>
+
+                <div class="project-card" onclick="redirectToGitHub('memory-profiler')">
+                    <div class="project-icon">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                    <h3 class="project-title">Virtual Memory Profiling Tool</h3>
+                    <p class="project-description">
+                        Comprehensive memory profiling tool analyzing ML model usage patterns with interactive Streamlit dashboard for optimization insights.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Performance Analysis</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <div>Python</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <div>SQL</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-fire"></i></div>
+                    <div>PyTorch</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <div>Deep Learning</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                    <div>AWS EC2</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-docker"></i></div>
+                    <div>Docker</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div>Tableau</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                    <div>Git</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/yaxitaamin" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/yaxitaamin" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:yaxita@umd.edu" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Yaxita Amin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Create animated particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // GitHub redirect function
+        function redirectToGitHub(projectName) {
+            // Replace with actual GitHub repository URLs
+            const githubUrls = {
+                'leafdoctorai': 'https://github.com/yaxitaamin/leafdoctorai',
+                'bert-compression': 'https://github.com/yaxitaamin/bert-compression-suite',
+                'ev-charging-analytics': 'https://github.com/yaxitaamin/ev-charging-analytics',
+                'memory-profiler': 'https://github.com/yaxitaamin/ml-memory-profiler'
+            };
+
+            const url = githubUrls[projectName] || 'https://github.com/yaxitaamin';
+            window.open(url, '_blank');
+        }
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize particles
+        createParticles();
+
+        // Add scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe project cards for animation
+        document.querySelectorAll('.project-card, .stat-item, .skill-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
