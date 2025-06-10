@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,6 +130,53 @@
             color: #4f46e5;
         }
 
+        /* Achievement Banner */
+        .achievement-banner {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 40px 0;
+            text-align: center;
+            border: 2px solid rgba(220, 38, 38, 0.3);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+
+        .achievement-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .achievement-subtitle {
+            color: #fca5a5;
+            font-size: 1rem;
+        }
+
+        .paper-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .paper-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
         /* Resume Download Button */
         .resume-section {
             text-align: center;
@@ -179,6 +225,11 @@
             position: relative;
         }
 
+        .image-card.featured {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
         .image-card::before {
             content: '';
             position: absolute;
@@ -190,6 +241,10 @@
             transition: left 0.5s;
         }
 
+        .image-card.featured::before {
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+        }
+
         .image-card:hover::before {
             left: 100%;
         }
@@ -198,6 +253,11 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
             border-color: #4f46e5;
+        }
+
+        .image-card.featured:hover {
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
+            border-color: #dc2626;
         }
 
         .image-placeholder {
@@ -213,6 +273,11 @@
             color: white;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+        }
+
+        .image-placeholder.featured {
+            background: linear-gradient(135deg, #dc2626, #b91c1c, #991b1b);
         }
 
         .image-placeholder::before {
@@ -242,6 +307,15 @@
             color: #94a3b8;
             text-align: center;
             line-height: 1.6;
+        }
+
+        .highlight {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .featured .highlight {
+            color: #f87171;
         }
 
         /* Stats Section */
@@ -316,6 +390,12 @@
             overflow: hidden;
         }
 
+        .project-card.flagship {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+            order: -1;
+        }
+
         .project-card::before {
             content: '';
             position: absolute;
@@ -325,6 +405,10 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
             transition: left 0.5s;
+        }
+
+        .project-card.flagship::before {
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
         }
 
         .project-card:hover::before {
@@ -337,10 +421,19 @@
             border-color: #4f46e5;
         }
 
+        .project-card.flagship:hover {
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
+            border-color: #dc2626;
+        }
+
         .project-icon {
             font-size: 2.5rem;
             color: #4f46e5;
             margin-bottom: 20px;
+        }
+
+        .project-card.flagship .project-icon {
+            color: #dc2626;
         }
 
         .project-title {
@@ -371,6 +464,12 @@
             border: 1px solid rgba(79, 70, 229, 0.3);
         }
 
+        .project-card.flagship .tech-tag {
+            background: rgba(220, 38, 38, 0.2);
+            color: #fca5a5;
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
         .project-link {
             display: inline-flex;
             align-items: center;
@@ -381,8 +480,28 @@
             transition: color 0.3s ease;
         }
 
+        .project-card.flagship .project-link {
+            color: #dc2626;
+        }
+
         .project-link:hover {
             color: #7c3aed;
+        }
+
+        .project-card.flagship .project-link:hover {
+            color: #b91c1c;
+        }
+
+        .flagship-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #dc2626;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         /* Skills Section */
@@ -552,10 +671,21 @@
                     <h1 class="name">Yaxita Amin</h1>
                     <h2 class="title">ML Engineer & AI Researcher</h2>
                     <p class="description">
-                        Hardworking, proactive individual committed to continuous growth in Machine Learning and Artificial Intelligence. Currently pursuing M.S in Applied Machine Learning at University of Maryland.
+                        Published researcher and ML engineer specializing in cybersecurity AI, model optimization, and computer vision. Currently pursuing M.S in Applied Machine Learning at University of Maryland.
                     </p>
                 </div>
             </div>
+
+            <!-- Achievement Banner -->
+            <div class="achievement-banner">
+                <div class="achievement-text">🏆 Published Research Paper on ArXiv</div>
+                <div class="achievement-subtitle">"A Comprehensive Survey of U-Net Architectures for Remote Sensing Applications"</div>
+                <a href="https://arxiv.org/abs/2506.07925" class="paper-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
+                    View Paper on ArXiv
+                </a>
+            </div>
+
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
@@ -584,6 +714,16 @@
         <div class="container">
             <h2 class="section-title">Project Showcases</h2>
             <div class="images-grid">
+                <div class="image-card featured">
+                    <div class="image-placeholder featured" onclick="window.open('https://github.com/YaxitaAmin/CassandraSecurity', '_blank')">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="image-title">CassandraSec: Predictive Security AI</h3>
+                    <p class="image-description">
+                        World's first predictive dependency security system with <span class="highlight">89% accuracy</span> in detecting supply chain attacks!<br>
+                        <span class="highlight">6-12 month</span> lead time for proactive cybersecurity defense.
+                    </p>
+                </div>
                 <div class="image-card">
                     <div class="image-placeholder" onclick="window.open('https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels', '_blank')">
                         <img src="figure1.png" alt="ML Memory Profiler" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
@@ -598,10 +738,10 @@
                     <div class="image-placeholder" onclick="window.open('https://github.com/YaxitaAmin/LeafDoctorAI', '_blank')">
                         <img src="figure.jpg" alt="Research U-Net Modifications" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
                     </div>
-                    <h3 class="image-title">U-Net Modifications: Proposed Illustration</h3>
+                    <h3 class="image-title">U-Net Research: Published Work</h3>
                     <p class="image-description">
-                        Showcases <span class="highlight">18+ U-Net modifications</span> in one figure!<br>
-                        A visual representation of architecture innovations in deep learning.
+                        Comprehensive analysis of <span class="highlight">60+ research papers</span> on U-Net architectures!<br>
+                        Published in ArXiv - advancing remote sensing applications.
                     </p>
                 </div>
                 <div class="image-card">
@@ -619,11 +759,14 @@
         </div>
     </section>
 
-
     <!-- Stats Section -->
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">CassandraSec Accuracy</div>
+                </div>
                 <div class="stat-item">
                     <div class="stat-number">88.2%</div>
                     <div class="stat-label">Best Model Accuracy</div>
@@ -649,6 +792,28 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
+                <div class="project-card flagship" onclick="redirectToGitHub('cassandrasec')">
+                    <div class="flagship-badge">FLAGSHIP</div>
+                    <div class="project-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="project-title">CassandraSec: Predictive Security AI</h3>
+                    <p class="project-description">
+                        World's first predictive dependency security system for software supply chain attacks. Achieves 89% prediction accuracy with 6-12 month lead time, analyzing 2,825+ npm/PyPI packages using advanced AI ensemble methods.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">GNN</span>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">Cybersecurity AI</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                </div>
+
                 <div class="project-card" onclick="redirectToGitHub('leafdoctorai')">
                     <div class="project-icon">
                         <i class="fas fa-leaf"></i>
@@ -688,14 +853,13 @@
                         View on GitHub
                     </a>
                 </div>
-
-                <div class="project-card" onclick="redirectToGitHub('ev-charging-analytics')">
+<div class="project-card" onclick="redirectToGitHub('ev-charging-analytics')">
                     <div class="project-icon">
                         <i class="fas fa-charging-station"></i>
                     </div>
                     <h3 class="project-title">EV Charging Infrastructure Analytics</h3>
                     <p class="project-description">
-                        Interactive dashboard analyzing U.S. EV charging infrastructure with geospatial visualizations revealing distribution patterns.
+                        Interactive dashboard analyzing U.S. EV charging infrastructure with geospatial visualizations revealing distribution patterns across 50,000+ stations.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
@@ -820,14 +984,13 @@
 
         // Resume download function
         function downloadResume() {
-            // You can replace this with an actual resume file URL
             window.open('https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view?usp=sharing', '_blank');
-            // Example: window.open('path/to/resume.pdf', '_blank');
         }
 
         // GitHub redirect function with updated URLs
         function redirectToGitHub(projectName) {
             const githubUrls = {
+                'cassandrasec': 'https://github.com/YaxitaAmin/CassandraSecurity',
                 'leafdoctorai': 'https://github.com/YaxitaAmin/LeafDoctorAI',
                 'bert-compression': 'https://github.com/YaxitaAmin/Modelcompressionsuite',
                 'ev-charging-analytics': 'https://github.com/YaxitaAmin/EV-Analytics',
