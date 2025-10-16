@@ -13,358 +13,185 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
-            color: #ffffff;
-            overflow-x: hidden;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Animated background particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(100, 200, 255, 0.6);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-        }
-
-        /* Header */
+        /* Header Section */
         header {
-            padding: 80px 0;
-            text-align: center;
-            position: relative;
+            padding: 80px 0 60px;
+            border-bottom: 1px solid #1f1f1f;
         }
 
-        .profile-section {
+        .header-content {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
             gap: 60px;
-            flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
         .profile-image {
-            width: 200px;
-            height: 200px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #4f46e5, #7c3aed, #ec4899);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 3rem;
             color: white;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            animation: profileGlow 3s ease-in-out infinite alternate;
+            flex-shrink: 0;
         }
 
-        @keyframes profileGlow {
-            0% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
-            100% { box-shadow: 0 20px 60px rgba(79, 70, 229, 0.4); }
-        }
-
-        .profile-info {
-            text-align: left;
-            max-width: 500px;
+        .header-info {
+            flex: 1;
         }
 
         .name {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #4f46e5, #7c3aed, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            color: #ffffff;
+            margin-bottom: 8px;
         }
 
         .title {
-            font-size: 1.4rem;
-            color: #94a3b8;
+            font-size: 1.25rem;
+            color: #9ca3af;
             margin-bottom: 20px;
+            font-weight: 500;
         }
 
-        .description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #cbd5e1;
+        .bio {
+            font-size: 1.05rem;
+            color: #d1d5db;
+            line-height: 1.7;
+            margin-bottom: 24px;
         }
 
-        .contact-info {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #94a3b8;
+            color: #9ca3af;
+            font-size: 0.95rem;
         }
 
         .contact-item i {
-            color: #4f46e5;
+            color: #2563eb;
+            width: 20px;
         }
 
-        /* Research Paper Highlight */
-        .research-highlight {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
-            border: 2px solid #4f46e5;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 40px 0;
-            text-align: center;
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #1f1f1f;
+            color: #e5e5e5;
+            border: 1px solid #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #2a2a2a;
+            border-color: #4b5563;
+        }
+
+        /* Research Section */
+        .research-section {
+            padding: 60px 0;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .research-card {
+            background: linear-gradient(135deg, #1e1b4b 0%, #1e3a8a 100%);
+            border: 1px solid #3730a3;
+            border-radius: 12px;
+            padding: 32px;
             position: relative;
             overflow: hidden;
-        }
-
-        .research-highlight::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(79, 70, 229, 0.1), transparent);
-            animation: rotate 8s linear infinite;
-        }
-
-        .research-highlight-content {
-            position: relative;
-            z-index: 1;
         }
 
         .research-badge {
             display: inline-block;
-            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            background: #2563eb;
             color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 15px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            margin-bottom: 16px;
         }
 
         .research-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
             color: white;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
-        .research-description {
-            font-size: 1.1rem;
+        .research-meta {
             color: #cbd5e1;
             margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
-        .arxiv-link {
+        .research-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
+            gap: 8px;
+            background: white;
+            color: #1e3a8a;
+            padding: 10px 20px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
         }
 
-        .arxiv-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Resume Download Button */
-        .resume-section {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .resume-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(45deg, #4f46e5, #7c3aed);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
-        }
-
-        .resume-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.4);
-        }
-
-        /* Images Section */
-        .images-section {
-            padding: 80px 0 60px;
-        }
-
-        .images-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .image-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .image-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .image-card:hover::before {
-            left: 100%;
-        }
-
-        .image-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
-            border-color: #4f46e5;
-        }
-
-        .image-placeholder {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 3rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .image-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .image-description {
-            color: #94a3b8;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        .highlight {
-            color: #4f46e5;
-            font-weight: 600;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 60px 0;
-            background: rgba(15, 15, 35, 0.5);
-            backdrop-filter: blur(10px);
-            margin: 40px 0;
-            border-radius: 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #4f46e5;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: #94a3b8;
-            font-size: 1.1rem;
+        .research-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
         }
 
         /* Projects Section */
@@ -372,389 +199,319 @@
             padding: 80px 0;
         }
 
+        .section-header {
+            margin-bottom: 48px;
+        }
+
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: #9ca3af;
+            font-size: 1.05rem;
+        }
+
+        .category-section {
             margin-bottom: 60px;
-            background: linear-gradient(45deg, #4f46e5, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #1f1f1f;
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .category-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .category-info p {
+            color: #9ca3af;
+            font-size: 0.95rem;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #141414;
+            border: 1px solid #1f1f1f;
+            border-radius: 12px;
+            padding: 28px;
             transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card.flagship {
-            border: 2px solid #4f46e5;
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.05));
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
-            border-color: #4f46e5;
+            border-color: #2563eb;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
         }
 
-        .project-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(45deg, #4f46e5, #7c3aed);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
         }
 
         .project-icon {
-            font-size: 2.5rem;
-            color: #4f46e5;
-            margin-bottom: 20px;
+            font-size: 1.75rem;
+            color: #2563eb;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .project-link-icon {
+            color: #6b7280;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link-icon:hover {
+            color: #2563eb;
         }
 
         .project-title {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            color: white;
+            margin-bottom: 12px;
         }
 
         .project-description {
-            color: #94a3b8;
+            color: #9ca3af;
+            font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .tech-tag {
-            background: rgba(79, 70, 229, 0.2);
-            color: #a78bfa;
+            background: #1f1f1f;
+            color: #9ca3af;
             padding: 4px 12px;
-            border-radius: 15px;
+            border-radius: 6px;
             font-size: 0.8rem;
-            border: 1px solid rgba(79, 70, 229, 0.3);
+            border: 1px solid #2a2a2a;
         }
 
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #4f46e5;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid #1f1f1f;
         }
 
-        .project-link:hover {
-            color: #7c3aed;
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2563eb;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #6b7280;
         }
 
         /* Skills Section */
         .skills-section {
             padding: 80px 0;
-            background: rgba(15, 15, 35, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin: 40px 0;
+            background: #0f0f0f;
+            border-top: 1px solid #1f1f1f;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
         }
 
         .skill-item {
-            background: rgba(255, 255, 255, 0.05);
+            background: #141414;
+            border: 1px solid #1f1f1f;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 10px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
         .skill-item:hover {
-            transform: scale(1.05);
-            background: rgba(79, 70, 229, 0.1);
-            border-color: #4f46e5;
+            border-color: #2563eb;
+            transform: translateY(-2px);
         }
 
         .skill-icon {
             font-size: 2rem;
-            margin-bottom: 10px;
-            color: #4f46e5;
+            margin-bottom: 8px;
+            color: #2563eb;
+        }
+
+        .skill-name {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            font-weight: 500;
         }
 
         /* Footer */
         footer {
             padding: 60px 0;
+            border-top: 1px solid #1f1f1f;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .social-link {
+            width: 44px;
+            height: 44px;
+            background: #141414;
+            border: 1px solid #1f1f1f;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: #94a3b8;
+            color: #9ca3af;
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-link:hover {
-            background: #4f46e5;
+            background: #2563eb;
             color: white;
-            transform: translateY(-5px);
+            border-color: #2563eb;
+            transform: translateY(-2px);
         }
 
-        /* Loading Animation */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.5s ease;
+        .footer-text {
+            color: #6b7280;
+            font-size: 0.9rem;
         }
 
-        .loading-content {
-            text-align: center;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(79, 70, 229, 0.3);
-            border-top: 3px solid #4f46e5;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            font-size: 1.2rem;
-            color: #94a3b8;
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .profile-section {
+            .header-content {
                 flex-direction: column;
-                gap: 30px;
-            }
-
-            .profile-info {
-                text-align: center;
+                gap: 32px;
             }
 
             .name {
-                font-size: 2.5rem;
+                font-size: 2.25rem;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .images-grid {
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="loader"></div>
-            <div class="loading-text">Loading Portfolio...</div>
-        </div>
-    </div>
-
-    <!-- Animated Background Particles -->
-    <div class="particles" id="particles"></div>
-
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="profile-section">
+            <div class="header-content">
                 <div class="profile-image">
                     <i class="fas fa-brain"></i>
                 </div>
-                <div class="profile-info">
+                <div class="header-info">
                     <h1 class="name">Yaxita Amin</h1>
-                    <h2 class="title">ML Engineer & AI Researcher</h2>
-                    <p class="description">
-                        Hardworking, proactive individual committed to continuous growth in Machine Learning and Artificial Intelligence. Currently pursuing M.S in Applied Machine Learning at University of Maryland.
+                    <p class="title">ML Engineer & AI Researcher</p>
+                    <p class="bio">
+                        Master's student in Applied Machine Learning at University of Maryland, specializing in deep learning, computer vision, and model optimization. Published researcher with expertise in building production-ready ML systems and scalable AI solutions.
                     </p>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>yaxita@umd.edu</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>College Park, MD, USA</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Expected Graduation: May 2026</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view?usp=sharing" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                            View Resume
+                        </a>
+                        <a href="https://github.com/YaxitaAmin" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            GitHub Profile
+                        </a>
+                        <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                            LinkedIn
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>yaxita@umd.edu</span>
-                </div>
-<!--                 <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+1 (240) 791-2848</span>
-                </div> -->
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>College Park, USA</span>
-                </div>
-            </div>
-            
-            <!-- Research Paper Highlight -->
-            <div class="research-highlight">
-                <div class="research-highlight-content">
-                    <div class="research-badge">🚀 LATEST RESEARCH</div>
-                    <h3 class="research-title">A Comparative Study of U-Net Architectures for Change Detection in Satellite Images</h3>
-                    <a href="https://arxiv.org/abs/2506.07925" class="arxiv-link" target="_blank">
-                        <i class="fas fa-file-alt"></i>
-                        Read Paper on ArXiv
-                    </a>
-                </div>
-            </div>
-
-            <div class="resume-section">
-                <a href="#" class="resume-button" onclick="downloadResume()">
-                    <i class="fas fa-download"></i>
-                    View Resume
-                </a>
             </div>
         </div>
     </header>
 
-    <!-- Images Section -->
-    <section class="images-section">
+    <!-- Research Section -->
+    <section class="research-section">
         <div class="container">
-            <h2 class="section-title">Project Showcases</h2>
-            <div class="images-grid">
-                <div class="image-card">
-                    <div class="image-placeholder" onclick="window.open('https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels', '_blank')">
-                        <img src="figure1.png" alt="ML Memory Profiler" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
-                    </div>
-                    <h3 class="image-title">ML Memory Profiler</h3>
-                    <p class="image-description">
-                        Achieved <span class="highlight">4.3x</span> memory efficiency and <span class="highlight">60%</span> lower memory footprint with PyTorch.<br>
-                        Streamlit-based dashboard for interactive profiling!
-                    </p>
-                </div>
-                <div class="image-card">
-                    <div class="image-placeholder" onclick="window.open('https://github.com/YaxitaAmin/LeafDoctorAI', '_blank')">
-                        <img src="figure.jpg" alt="Research U-Net Modifications" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
-                    </div>
-                    <h3 class="image-title">U-Net Modifications: Proposed Illustration</h3>
-                    <p class="image-description">
-                        Showcases <span class="highlight">18+ U-Net modifications</span> in one figure!<br>
-                        A visual representation of architecture innovations in deep learning.
-                    </p>
-                </div>
-                <div class="image-card">
-                    <div class="image-placeholder" onclick="window.open('https://github.com/YaxitaAmin/Modelcompressionsuite', '_blank')">
-                        <img src="figure2.png" alt="EV Charging Analytics" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
-                    </div>
-                    <h3 class="image-title">EV Charging Analytics</h3>
-                    <p class="image-description">
-                        <span class="highlight">80%</span> data coverage across 30+ years!<br>
-                        <span class="highlight">47%</span> state-wise filtering with 10+ filters.<br>
-                        Stunning geospatial insights!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">89%</div>
-                    <div class="stat-label">CassandraSec Accuracy</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">88.2%</div>
-                    <div class="stat-label">Best Model Accuracy</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">80%</div>
-                    <div class="stat-label">Model Size Reduction</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">4.3x</div>
-                    <div class="stat-label">Memory Efficiency Gain</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">60+</div>
-                    <div class="stat-label">Research Papers Analyzed</div>
-                </div>
+            <div class="research-card">
+                <div class="research-badge">PUBLISHED RESEARCH</div>
+                <h2 class="research-title">A Comparative Study of U-Net Architectures for Change Detection in Satellite Images</h2>
+                <p class="research-meta">IET Conference Proceedings (PICET 2025) • First Author • Peer-Reviewed</p>
+                <a href="https://arxiv.org/abs/2506.07925" class="research-link" target="_blank">
+                    <i class="fas fa-file-alt"></i>
+                    Read Paper on arXiv
+                </a>
             </div>
         </div>
     </section>
@@ -762,151 +519,297 @@
     <!-- Projects Section -->
     <section class="projects-section">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card flagship" onclick="redirectToGitHub('cassandrasec')">
-                    <div class="project-badge">FLAGSHIP</div>
-                    <div class="project-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="project-title">CassandraSec: Predictive Security System</h3>
-                    <p class="project-description">
-                        World's first predictive AI system for software supply chain attack detection with 89% accuracy and 86.67% precision. Analyzed 2,825+ packages using GNN, LSTM, and Sentiment Analysis ensemble.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">GNN</span>
-                        <span class="tech-tag">LSTM</span>
-                        <span class="tech-tag">NetworkX</span>
-                        <span class="tech-tag">Streamlit</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">Technical Projects</h2>
+                <p class="section-subtitle">Production-ready implementations across multiple domains of machine learning and AI</p>
+            </div>
 
-                <div class="project-card" onclick="redirectToGitHub('leafdoctorai')">
-                    <div class="project-icon">
-                        <i class="fas fa-leaf"></i>
+            <!-- Computer Vision Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-eye"></i>
                     </div>
-                    <h3 class="project-title">LeafDoctorAI</h3>
-                    <p class="project-description">
-                        Plant disease detection system using MobileNetV2 architecture achieving 88.20% accuracy with comprehensive data augmentation pipeline.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">MobileNetV2</span>
-                        <span class="tech-tag">Transfer Learning</span>
-                        <span class="tech-tag">Computer Vision</span>
+                    <div class="category-info">
+                        <h3>Computer Vision & Image Processing</h3>
+                        <p>Deep learning architectures for visual recognition and analysis</p>
                     </div>
-                    <a href="#" class="project-link">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
                 </div>
-
-                <div class="project-card" onclick="redirectToGitHub('bert-compression')">
-                    <div class="project-icon">
-                        <i class="fas fa-compress-arrows-alt"></i>
+                <div class="projects-grid">
+                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/LeafDoctorAI', '_blank')">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/YaxitaAmin/LeafDoctorAI" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github project-link-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">LeafDoctorAI - Agricultural Disease Detection</h3>
+                        <p class="project-description">
+                            Plant disease classification system using CNN and PyTorch with mobile-optimized inference pipeline for real-time diagnosis and treatment recommendations.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Computer Vision</span>
+                            <span class="tech-tag">Mobile Deployment</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">92%</span>
+                                <span class="metric-label">Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">10K+</span>
+                                <span class="metric-label">Images</span>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="project-title">BERT Model Compression Suite</h3>
-                    <p class="project-description">
-                        Advanced compression pipeline reducing BERT model size by 80% while maintaining 91.5% performance with 47% lower inference latency.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Transformers</span>
-                        <span class="tech-tag">AWS EC2</span>
-                        <span class="tech-tag">Model Optimization</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                </div>
-
-                
-        <div class="project-card" onclick="redirectToGitHub('ev-charging-analytics')">
-                    <div class="project-icon">
-                        <i class="fas fa-charging-station"></i>
-                    </div>
-                    <h3 class="project-title">EV Charging Infrastructure Analytics</h3>
-                    <p class="project-description">
-                        Interactive dashboard analyzing U.S. EV charging infrastructure with geospatial visualizations revealing distribution patterns across 50,000+ stations.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Tableau</span>
-                        <span class="tech-tag">Geospatial Analysis</span>
-                        <span class="tech-tag">Data Visualization</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                </div>
-
-                <div class="project-card" onclick="redirectToGitHub('memory-profiler')">
-                    <div class="project-icon">
-                        <i class="fas fa-memory"></i>
-                    </div>
-                    <h3 class="project-title">Virtual Memory Profiling Tool</h3>
-                    <p class="project-description">
-                        Comprehensive memory profiling tool analyzing ML model usage patterns with interactive Streamlit dashboard for optimization insights.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Performance Analysis</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
                 </div>
             </div>
+
+            <!-- Model Optimization Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Model Optimization & Compression</h3>
+                        <p>Techniques for efficient model deployment and resource optimization</p>
+                    </div>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/Modelcompressionsuite', '_blank')">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-compress"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/YaxitaAmin/Modelcompressionsuite" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github project-link-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">BERT Model Compression Pipeline</h3>
+                        <p class="project-description">
+                            Advanced compression pipeline for BERT models using quantization, pruning, and knowledge distillation with automated CI/CD deployment on AWS EC2.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">AWS EC2</span>
+                            <span class="tech-tag">Model Optimization</span>
+                            <span class="tech-tag">CI/CD</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">80%</span>
+                                <span class="metric-label">Size Reduction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">91.5%</span>
+                                <span class="metric-label">Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">47%</span>
+                                <span class="metric-label">Latency ↓</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels', '_blank')">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github project-link-icon"></i>
+                                </a>
+                                <a href="https://virtualmemoryprofilingmlmodels.streamlit.app/" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fas fa-external-link-alt project-link-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">ML Memory Profiling Framework</h3>
+                        <p class="project-description">
+                            Comprehensive memory profiling system with interactive Streamlit dashboard for comparative analysis of PyTorch and TensorFlow memory usage patterns.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Performance Analysis</span>
+                            <span class="tech-tag">Visualization</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">4.3x</span>
+                                <span class="metric-label">Efficiency</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">60%</span>
+                                <span class="metric-label">Memory ↓</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NLP & Multi-Agent Systems Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>NLP & Multi-Agent Systems</h3>
+                        <p>Language models and intelligent agent frameworks</p>
+                    </div>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/MultiAgent_QA_Automation', '_blank')">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/YaxitaAmin/MultiAgent_QA_Automation" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github project-link-icon"></i>
+                                </a>
+                                <a href="https://multiagentqasystem.streamlit.app/" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fas fa-external-link-alt project-link-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">MultiAgent QA Automation Platform</h3>
+                        <p class="project-description">
+                            Multi-agent LLM system using Agent-S framework with Google Gemini for automated mobile QA testing, reducing manual testing effort significantly.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Google Gemini</span>
+                            <span class="tech-tag">LangChain</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">85.7%</span>
+                                <span class="metric-label">Success Rate</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">70%</span>
+                                <span class="metric-label">QA Effort ↓</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">0.25s</span>
+                                <span class="metric-label">Execution</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Algorithmic Trading & Financial ML Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Algorithmic Trading & Financial ML</h3>
+                        <p>Real-time market analysis and automated trading systems</p>
+                    </div>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/FinAgent', '_blank')">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/YaxitaAmin/FinAgent" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github project-link-icon"></i>
+                                </a>
+                                <a href="https://finagentai.streamlit.app/" target="_blank" onclick="event.stopPropagation()">
+                                    <i class="fas fa-external-link-alt project-link-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">FinAgent - Algorithmic Trading System</h3>
+                        <p class="project-description">
+                            Production-ready portfolio management system with real-time market analysis, automated trading decisions, and risk assessment for live market conditions.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Financial APIs</span>
+                            <span class="tech-tag">Real-time Processing</span>
+                            <span class="tech-tag">Risk Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Skills Section -->
     <section class="skills-section">
         <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
+            <div class="section-header">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">Core competencies in machine learning, data science, and software engineering</p>
+            </div>
             <div class="skills-grid">
                 <div class="skill-item">
                     <div class="skill-icon"><i class="fab fa-python"></i></div>
-                    <div>Python</div>
+                    <div class="skill-name">Python</div>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-database"></i></div>
-                    <div>SQL</div>
+                    <div class="skill-icon"><i class="fab fa-r-project"></i></div>
+                    <div class="skill-name">R</div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-fire"></i></div>
-                    <div>PyTorch</div>
+                    <div class="skill-name">PyTorch</div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                    <div>Deep Learning</div>
+                    <div class="skill-name">TensorFlow</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="skill-name">Scikit-learn</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-eye"></i></div>
+                    <div class="skill-name">OpenCV</div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon"><i class="fab fa-aws"></i></div>
-                    <div>AWS EC2</div>
+                    <div class="skill-name">AWS EC2</div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon"><i class="fab fa-docker"></i></div>
-                    <div>Docker</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
-                    <div>Tableau</div>
+                    <div class="skill-name">Docker</div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-                    <div>Git</div>
+                    <div class="skill-name">Git</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <div class="skill-name">Spark MLlib</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-stream"></i></div>
+                    <div class="skill-name">Streamlit</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-flask"></i></div>
+                    <div class="skill-name">Flask</div>
                 </div>
             </div>
         </div>
@@ -916,84 +819,36 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://github.com/YaxitaAmin" class="social-link" target="_blank">
+                <a href="https://github.com/YaxitaAmin" class="social-link" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="social-link" target="_blank">
+                <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="social-link" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="mailto:yaxita@umd.edu" class="social-link">
+                <a href="mailto:yaxita@umd.edu" class="social-link" aria-label="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
+                <a href="https://arxiv.org/abs/2506.07925" class="social-link" target="_blank" aria-label="Research">
+                    <i class="fas fa-file-alt"></i>
+                </a>
             </div>
-            <p>&copy; 2025 Yaxita Amin. All rights reserved.</p>
+            <p class="footer-text">&copy; 2025 Yaxita Amin. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Loading animation
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loadingOverlay').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loadingOverlay').style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
-
-        // Create animated particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Resume download function
-        function downloadResume() {
-            window.open('https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view?usp=sharing', '_blank');
-        }
-
-        // GitHub redirect function with updated URLs
-        function redirectToGitHub(projectName) {
-            const githubUrls = {
-                'cassandrasec': 'https://github.com/YaxitaAmin/CassandraSecurity',
-                'leafdoctorai': 'https://github.com/YaxitaAmin/LeafDoctorAI',
-                'bert-compression': 'https://github.com/YaxitaAmin/Modelcompressionsuite',
-                'ev-charging-analytics': 'https://github.com/YaxitaAmin/EV-Analytics',
-                'memory-profiler': 'https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels'
-            };
-
-            const url = githubUrls[projectName] || 'https://github.com/YaxitaAmin';
-            window.open(url, '_blank');
-        }
-
-        // Smooth scrolling for internal links
+        // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // Initialize particles
-        createParticles();
-
-        // Add scroll-based animations
+        // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1008,11 +863,11 @@
             });
         }, observerOptions);
 
-        // Observe elements for animation
-        document.querySelectorAll('.project-card, .stat-item, .skill-item, .image-card').forEach(el => {
+        // Observe project cards for animations
+        document.querySelectorAll('.project-card, .skill-item').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(el);
         });
     </script>
