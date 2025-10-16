@@ -194,6 +194,78 @@
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
         }
 
+        /* Demo Showcase Section */
+        .demo-section {
+            padding: 80px 0;
+            background: #0f0f0f;
+            border-top: 1px solid #1f1f1f;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .demo-card {
+            background: #141414;
+            border: 1px solid #1f1f1f;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-8px);
+            border-color: #2563eb;
+            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.2);
+        }
+
+        .demo-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .demo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-card:hover .demo-image img {
+            transform: scale(1.05);
+        }
+
+        .demo-fallback-icon {
+            font-size: 4rem;
+            color: #2563eb;
+        }
+
+        .demo-info {
+            padding: 20px;
+        }
+
+        .demo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .demo-description {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
         /* Projects Section */
         .projects-section {
             padding: 80px 0;
@@ -512,6 +584,54 @@
                     <i class="fas fa-file-alt"></i>
                     Read Paper on arXiv
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Showcase Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">At a Glance - Live Demos</h2>
+                <p class="section-subtitle">Interactive demonstrations of production-ready applications</p>
+            </div>
+            <div class="demo-grid">
+                <div class="demo-card" onclick="window.open('https://finagentai.streamlit.app/', '_blank')">
+                    <div class="demo-image">
+                        <img src="Screenshot 2025-10-16 195102.png" alt="FinAgent Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-chart-line demo-fallback-icon\'></i>'">
+                    </div>
+                    <div class="demo-info">
+                        <h4 class="demo-title">FinAgent Trading System</h4>
+                        <p class="demo-description">Real-time portfolio management with live market data</p>
+                    </div>
+                </div>
+                <div class="demo-card" onclick="window.open('https://virtualmemoryprofilingmlmodels.streamlit.app/', '_blank')">
+                    <div class="demo-image">
+                        <img src="Screenshot 2025-10-16 195118.png" alt="Memory Profiler Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-memory demo-fallback-icon\'></i>'">
+                    </div>
+                    <div class="demo-info">
+                        <h4 class="demo-title">ML Memory Profiler</h4>
+                        <p class="demo-description">Interactive framework comparison dashboard</p>
+                    </div>
+                </div>
+                <div class="demo-card" onclick="window.open('https://multiagentqasystem.streamlit.app/', '_blank')">
+                    <div class="demo-image">
+                        <img src="Screenshot 2025-10-16 195129.png" alt="MultiAgent QA Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-robot demo-fallback-icon\'></i>'">
+                    </div>
+                    <div class="demo-info">
+                        <h4 class="demo-title">MultiAgent QA Platform</h4>
+                        <p class="demo-description">Automated mobile testing with LLM agents</p>
+                    </div>
+                </div>
+                <div class="demo-card" onclick="window.open('https://github.com/YaxitaAmin/Modelcompressionsuite', '_blank')">
+                    <div class="demo-image">
+                        <img src="Screenshot 2025-10-16 195146.png" alt="BERT Compression Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-compress demo-fallback-icon\'></i>'">
+                    </div>
+                    <div class="demo-info">
+                        <h4 class="demo-title">BERT Model Compression</h4>
+                        <p class="demo-description">Advanced compression pipeline with 80% size reduction</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
