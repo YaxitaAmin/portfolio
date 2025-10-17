@@ -17,6 +17,105 @@
             background: #0a0a0a;
             color: #e5e5e5;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f1f1f;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #2563eb;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #e5e5e5;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         .container {
@@ -27,7 +126,7 @@
 
         /* Header Section */
         header {
-            padding: 80px 0 60px;
+            padding: 140px 0 80px;
             border-bottom: 1px solid #1f1f1f;
         }
 
@@ -49,6 +148,17 @@
             font-size: 3rem;
             color: white;
             flex-shrink: 0;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .header-info {
@@ -73,7 +183,45 @@
             font-size: 1.05rem;
             color: #d1d5db;
             line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .current-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
             margin-bottom: 24px;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-status 2s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+        }
+
+        @keyframes pulse-status {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        .status-text {
+            color: #86efac;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .contact-grid {
@@ -111,7 +259,32 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn > * {
+            position: relative;
+            z-index: 1;
         }
 
         .btn-primary {
@@ -122,6 +295,7 @@
         .btn-primary:hover {
             background: #1d4ed8;
             transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
         }
 
         .btn-secondary {
@@ -204,7 +378,7 @@
 
         .demo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 24px;
         }
 
@@ -214,13 +388,31 @@
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .demo-card:nth-child(1) { animation-delay: 0.1s; }
+        .demo-card:nth-child(2) { animation-delay: 0.2s; }
+        .demo-card:nth-child(3) { animation-delay: 0.3s; }
+        .demo-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .demo-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02);
             border-color: #2563eb;
-            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
         }
 
         .demo-image {
@@ -237,11 +429,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .demo-card:hover .demo-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .demo-fallback-icon {
@@ -294,34 +486,45 @@
         .category-header {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 16px;
-            margin-bottom: 32px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid #1f1f1f;
+            margin-bottom: 48px;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            border: 2px solid #2563eb;
+            border-radius: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .category-header:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
         }
 
         .category-icon {
-            width: 48px;
-            height: 48px;
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, #2563eb, #7c3aed);
-            border-radius: 10px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: white;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
         }
 
         .category-info h3 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
             color: white;
             margin-bottom: 4px;
         }
 
         .category-info p {
-            color: #9ca3af;
-            font-size: 0.95rem;
+            color: #cbd5e1;
+            font-size: 1rem;
         }
 
         .projects-grid {
@@ -335,14 +538,31 @@
             border: 1px solid #1f1f1f;
             border-radius: 12px;
             padding: 28px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
         }
 
         .project-card:hover {
             border-color: #2563eb;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.2);
         }
 
         .project-header {
@@ -507,6 +727,14 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .header-content {
                 flex-direction: column;
                 gap: 32px;
@@ -523,12 +751,37 @@
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+
+            <div class="category-header::before {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="background-animation" id="bgAnimation"></div>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">YA</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#demos">Demos</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
     <!-- Header -->
-    <header>
+    <header id="home">>
         <div class="container">
             <div class="header-content">
                 <div class="profile-image">
@@ -540,6 +793,10 @@
                     <p class="bio">
                         Master's student in Applied Machine Learning at University of Maryland, specializing in deep learning, computer vision, and model optimization. Published researcher with expertise in building production-ready ML systems and scalable AI solutions.
                     </p>
+                    <div class="current-status">
+                        <div class="status-indicator"></div>
+                        <span class="status-text">Currently working on Robotics Research at UMD</span>
+                    </div>
                     <div class="contact-grid">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -574,7 +831,7 @@
     </header>
 
     <!-- Research Section -->
-    <section class="research-section">
+    <section class="research-section" id="research">
         <div class="container">
             <div class="research-card">
                 <div class="research-badge">PUBLISHED RESEARCH</div>
@@ -589,13 +846,22 @@
     </section>
 
     <!-- Demo Showcase Section -->
-    <section class="demo-section">
+    <section class="demo-section" id="demos">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">At a Glance - Live Demos</h2>
                 <p class="section-subtitle">Interactive demonstrations of production-ready applications</p>
             </div>
             <div class="demo-grid">
+                <div class="demo-card" onclick="window.open('https://multiagentqasystem.streamlit.app/', '_blank')">
+                    <div class="demo-image">
+                        <img src="Screenshot 2025-10-16 195129.png" alt="MultiAgent QA Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-robot demo-fallback-icon\'></i>'">
+                    </div>
+                    <div class="demo-info">
+                        <h4 class="demo-title">MultiAgent QA Platform</h4>
+                        <p class="demo-description">Automated mobile testing with LLM agents</p>
+                    </div>
+                </div>
                 <div class="demo-card" onclick="window.open('https://finagentai.streamlit.app/', '_blank')">
                     <div class="demo-image">
                         <img src="Screenshot 2025-10-16 195102.png" alt="FinAgent Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-chart-line demo-fallback-icon\'></i>'">
@@ -614,30 +880,12 @@
                         <p class="demo-description">Interactive framework comparison dashboard</p>
                     </div>
                 </div>
-                <div class="demo-card" onclick="window.open('https://multiagentqasystem.streamlit.app/', '_blank')">
-                    <div class="demo-image">
-                        <img src="Screenshot 2025-10-16 195129.png" alt="MultiAgent QA Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-robot demo-fallback-icon\'></i>'">
-                    </div>
-                    <div class="demo-info">
-                        <h4 class="demo-title">MultiAgent QA Platform</h4>
-                        <p class="demo-description">Automated mobile testing with LLM agents</p>
-                    </div>
-                </div>
-                <div class="demo-card" onclick="window.open('https://github.com/YaxitaAmin/Modelcompressionsuite', '_blank')">
-                    <div class="demo-image">
-                        <img src="Screenshot 2025-10-16 195146.png" alt="BERT Compression Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-compress demo-fallback-icon\'></i>'">
-                    </div>
-                    <div class="demo-info">
-                        <h4 class="demo-title">BERT Model Compression</h4>
-                        <p class="demo-description">Advanced compression pipeline with 80% size reduction</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects-section">
+    <section class="projects-section" id="projects">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Technical Projects</h2>
@@ -876,7 +1124,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="skills-section">
+    <section class="skills-section" id="skills">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Technical Skills</h2>
@@ -936,7 +1184,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="social-links">
                 <a href="https://github.com/YaxitaAmin" class="social-link" target="_blank" aria-label="GitHub">
@@ -957,6 +1205,50 @@
     </footer>
 
     <script>
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Update active link based on scroll position
+            let current = '';
+            document.querySelectorAll('section, header, footer').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                const offsetTop = targetSection.offsetTop - 80;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
         // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
