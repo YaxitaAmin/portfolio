@@ -4,906 +4,694 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yaxita Amin — ML Researcher</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f5f3ee;
-    --ink: #1a1814;
-    --ink-soft: #4a4540;
-    --ink-faint: #9a9590;
-    --accent: #2a5caa;
-    --accent-warm: #c4622a;
-    --contour-1: rgba(42,92,170,0.08);
-    --contour-2: rgba(42,92,170,0.12);
-    --contour-3: rgba(42,92,170,0.16);
-    --contour-4: rgba(42,92,170,0.20);
-    --contour-5: rgba(42,92,170,0.25);
-    --node-cv: #2a5caa;
-    --node-nlp: #7a3a8a;
-    --node-rl: #c4622a;
-    --node-opt: #2a8a5c;
-    --node-research: #8a2a2a;
-  }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#f6f2e9;--cream2:#ede8db;--white:#fdfcf8;
+  --ink:#18160f;--ink2:#3c3828;--ink3:#7c7560;--ink4:#b0a990;
+  --blue:#1a4fa0;--border:rgba(26,79,160,0.14);--shadow:rgba(24,22,15,0.08);
+  --red:#922418;--green:#165c38;--amber:#9c5210;--purple:#52217a;--teal:#085858;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:16px 52px;background:rgba(246,242,233,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-name{font-family:'EB Garamond',serif;font-size:1.1rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);}
+.nav-sub{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-top:2px;}
+.nav-links{display:flex;gap:8px;align-items:center;}
+.nav-a{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:7px 13px;border:1px solid transparent;transition:all 0.2s;}
+.nav-a:hover{color:var(--blue);border-color:var(--border);}
+.nav-cta{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:8px 18px;background:var(--blue);transition:background 0.2s;}
+.nav-cta:hover{background:#133d80;}
 
-  body {
-    font-family: 'Crimson Pro', Georgia, serif;
-    background: var(--bg);
-    color: var(--ink);
-    overflow-x: hidden;
-    cursor: none;
-  }
+/* HERO */
+#hero{position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;padding-top:60px;}
+#contour-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.hero-info{position:absolute;top:90px;left:52px;z-index:20;max-width:340px;animation:fadeUp 1s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--blue);}
+.hero-name{font-family:'EB Garamond',serif;font-size:clamp(2.6rem,4.5vw,4rem);font-weight:700;line-height:1.05;letter-spacing:-0.025em;color:var(--ink);margin-bottom:14px;}
+.hero-name em{font-style:italic;color:var(--blue);}
+.hero-desc{font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--ink2);line-height:1.7;margin-bottom:20px;}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.07em;color:var(--ink3);padding:8px 14px;background:rgba(246,242,233,0.88);border:1px solid var(--border);backdrop-filter:blur(6px);}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero-legend{position:absolute;bottom:48px;left:52px;z-index:20;background:rgba(246,242,233,0.9);border:1px solid var(--border);padding:14px 18px;backdrop-filter:blur(8px);}
+.leg-head{font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid var(--border);}
+.leg-row{display:flex;align-items:center;gap:9px;margin-bottom:5px;font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--ink2);}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.hero-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:20;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink3);display:flex;flex-direction:column;align-items:center;gap:6px;animation:bob 3s ease-in-out infinite;}
+.hero-hint::after{content:'';width:1px;height:30px;background:linear-gradient(to bottom,var(--blue),transparent);}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
 
-  /* Custom cursor */
-  #cursor {
-    position: fixed;
-    width: 8px; height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    mix-blend-mode: multiply;
-  }
-  #cursor-ring {
-    position: fixed;
-    width: 32px; height: 32px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.15s ease;
-    opacity: 0.5;
-    mix-blend-mode: multiply;
-  }
+/* TOOLTIP */
+#node-tooltip{position:fixed;z-index:600;background:var(--white);border:1px solid var(--border);padding:12px 16px;pointer-events:none;display:none;box-shadow:4px 4px 0 var(--shadow);min-width:200px;}
+#node-tooltip.show{display:block;}
+.tt-cat{font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;}
+.tt-name{font-family:'EB Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--ink);}
+.tt-hint{font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:var(--ink3);margin-top:3px;}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(245,243,238,0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(42,92,170,0.1);
-  }
-  .nav-mono {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.05em;
-  }
-  .nav-name {
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-  .nav-links {
-    display: flex; gap: 32px; list-style: none;
-  }
-  .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-soft);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
+/* MODAL */
+#modal-overlay{position:fixed;inset:0;z-index:800;background:rgba(24,22,15,0.45);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;}
+#modal-overlay.on{display:flex;}
+#modal{background:var(--white);border:1px solid var(--border);width:90%;max-width:560px;max-height:88vh;overflow-y:auto;padding:44px;position:relative;animation:modalIn 0.3s cubic-bezier(0.4,0,0.2,1);}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(0.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+.modal-x{position:absolute;top:16px;right:18px;font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.07em;color:var(--ink3);background:none;border:1px solid var(--border);padding:5px 10px;cursor:pointer;transition:all 0.2s;}
+.modal-x:hover{color:var(--ink);}
+.m-cat{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;}
+.m-title{font-family:'EB Garamond',serif;font-size:1.9rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;margin-bottom:18px;color:var(--ink);}
+.m-desc{font-family:'EB Garamond',serif;font-size:1rem;color:var(--ink2);line-height:1.78;margin-bottom:22px;}
+.m-hr{border:none;border-top:1px solid var(--border);margin:18px 0;}
+.m-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:20px;}
+.m-metric{background:var(--cream);padding:15px 10px;text-align:center;}
+.m-val{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;display:block;margin-bottom:4px;line-height:1;}
+.m-lbl{font-family:'JetBrains Mono',monospace;font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);}
+.m-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px;}
+.m-tag{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.03em;padding:4px 10px;border:1px solid var(--border);color:var(--ink3);background:var(--cream);}
+.m-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.m-btn{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:11px 20px;text-decoration:none;text-align:center;border:1px solid;transition:all 0.2s;}
+.mbp{background:var(--blue);color:#fff;border-color:var(--blue);}
+.mbp:hover{background:#133d80;}
+.mbs{color:var(--ink2);border-color:var(--border);}
+.mbs:hover{border-color:var(--blue);color:var(--blue);}
 
-  /* HERO — THE CONTOUR PLOT */
-  #hero {
-    position: relative;
-    width: 100%; height: 100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+/* SECTIONS */
+.section{max-width:1020px;margin:0 auto;padding:90px 52px;}
+.section-alt{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.s-heading{font-family:'EB Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:52px;color:var(--ink);line-height:1.1;}
+.s-heading em{font-style:italic;color:var(--blue);}
 
-  #contour-svg {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-  }
+/* PROJECTS GRID */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
+.proj-card{background:var(--white);border:1px solid var(--border);padding:28px;cursor:pointer;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;}
+.proj-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+.proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--shadow);}
+.proj-card:hover::after{transform:scaleX(1);}
+.proj-card-cat{font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.proj-card-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.proj-card-title{font-family:'EB Garamond',serif;font-size:1.25rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.proj-card-desc{font-family:'EB Garamond',serif;font-size:0.93rem;color:var(--ink3);line-height:1.65;margin-bottom:16px;}
+.proj-card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;}
+.proj-card-tag{font-family:'JetBrains Mono',monospace;font-size:0.52rem;padding:3px 8px;border:1px solid var(--border);color:var(--ink3);}
+.proj-card-arrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:5px;transition:gap 0.2s;}
+.proj-card:hover .proj-card-arrow{gap:10px;}
 
-  .hero-text {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    pointer-events: none;
-  }
-  .hero-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .hero-name {
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 300;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    color: var(--ink);
-    margin-bottom: 16px;
-  }
-  .hero-name em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero-desc {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: var(--ink-soft);
-    max-width: 440px;
-    margin: 0 auto 32px;
-    line-height: 1.5;
-  }
-  .hero-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-    border: 1px solid rgba(42,92,170,0.2);
-    padding: 8px 16px;
-    border-radius: 2px;
-  }
-  .status-dot {
-    width: 6px; height: 6px;
-    background: #2a8a5c;
-    border-radius: 50%;
-    animation: blink 2s ease-in-out infinite;
-  }
-  @keyframes blink {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
+/* RESEARCH */
+.pub-card{border:1px solid var(--border);padding:36px;background:var(--cream);transition:box-shadow 0.3s;margin-bottom:20px;}
+.pub-card:hover{box-shadow:5px 5px 0 rgba(26,79,160,0.1);}
+.pub-venue{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.pub-title{font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:10px;line-height:1.3;color:var(--ink);}
+.pub-authors{font-size:0.95rem;color:var(--ink3);font-style:italic;margin-bottom:16px;}
+.pub-desc{font-size:1rem;color:var(--ink2);line-height:1.75;margin-bottom:22px;}
+.pub-link{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--blue);padding-bottom:1px;transition:opacity 0.2s;margin-right:20px;}
+.pub-link:hover{opacity:0.6;}
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    animation: float-hint 2s ease-in-out infinite;
-  }
-  .scroll-hint::after {
-    content: '';
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-  }
-  @keyframes float-hint {
-    0%,100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(6px); }
-  }
+/* EXPERIENCE */
+.exp-item{display:grid;grid-template-columns:180px 1fr;gap:32px;margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid var(--border);}
+.exp-item:last-child{border-bottom:none;}
+.exp-date{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);padding-top:4px;}
+.exp-role{font-family:'EB Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.exp-org{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.exp-desc{font-family:'EB Garamond',serif;font-size:0.98rem;color:var(--ink2);line-height:1.75;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
+.exp-tag{font-family:'JetBrains Mono',monospace;font-size:0.52rem;padding:3px 8px;border:1px solid var(--border);color:var(--ink3);}
 
-  /* PROJECT NODES on the path */
-  .project-node {
-    cursor: none;
-  }
-  .project-node .node-outer {
-    transition: all 0.3s ease;
-  }
-  .project-node:hover .node-outer {
-    r: 14;
-    filter: url(#glow);
-  }
-  .project-node .node-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    fill: var(--ink-soft);
-    pointer-events: none;
-    transition: opacity 0.2s;
-  }
-  .project-node:hover .node-label {
-    fill: var(--ink);
-    font-weight: 500;
-  }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;}
+.about-text{font-family:'EB Garamond',serif;font-size:1.08rem;color:var(--ink2);line-height:1.85;}
+.about-text p{margin-bottom:18px;}
+.about-text strong{color:var(--ink);font-weight:700;}
+.about-links{margin-top:28px;display:flex;flex-direction:column;gap:10px;}
+.al{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.05em;color:var(--ink2);text-decoration:none;display:flex;align-items:center;gap:9px;transition:color 0.2s;}
+.al::before{content:'↗';color:var(--blue);}
+.al:hover{color:var(--blue);}
+.skills-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.skill-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(26,79,160,0.07);}
+.skill-bullet{color:var(--blue);font-size:0.55rem;flex-shrink:0;}
+.skill-name{font-family:'JetBrains Mono',monospace;font-size:0.67rem;letter-spacing:0.03em;color:var(--ink2);}
 
-  /* MODAL */
-  #modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(26,24,20,0.6);
-    z-index: 500;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-  #modal-overlay.active { display: flex; }
-  #modal {
-    background: var(--bg);
-    border: 1px solid rgba(42,92,170,0.2);
-    max-width: 520px;
-    width: 90%;
-    padding: 40px;
-    position: relative;
-    animation: modal-in 0.3s cubic-bezier(0.4,0,0.2,1);
-  }
-  @keyframes modal-in {
-    from { opacity: 0; transform: translateY(20px) scale(0.97); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  .modal-category {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .modal-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-  .modal-desc {
-    font-size: 1rem;
-    color: var(--ink-soft);
-    line-height: 1.65;
-    margin-bottom: 20px;
-    font-weight: 300;
-  }
-  .modal-metrics {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 24px;
-    padding: 16px 0;
-    border-top: 1px solid rgba(42,92,170,0.1);
-    border-bottom: 1px solid rgba(42,92,170,0.1);
-  }
-  .modal-metric { text-align: center; }
-  .modal-metric-val {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.3rem;
-    font-weight: 700;
-    display: block;
-  }
-  .modal-metric-lbl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--ink-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .modal-tags {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
-  }
-  .modal-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    padding: 4px 10px;
-    border: 1px solid rgba(42,92,170,0.25);
-    color: var(--ink-soft);
-    letter-spacing: 0.05em;
-  }
-  .modal-links {
-    display: flex; gap: 12px;
-  }
-  .modal-link {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    padding: 10px 20px;
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: 1px solid;
-    transition: all 0.2s;
-  }
-  .modal-link-primary {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-  }
-  .modal-link-primary:hover { background: #1a4c9a; }
-  .modal-link-secondary {
-    color: var(--ink-soft);
-    border-color: rgba(42,92,170,0.3);
-  }
-  .modal-link-secondary:hover { border-color: var(--accent); color: var(--accent); }
-  .modal-close {
-    position: absolute;
-    top: 16px; right: 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--ink-faint);
-    background: none;
-    border: none;
-    cursor: none;
-    padding: 8px;
-    letter-spacing: 0.05em;
-  }
-  .modal-close:hover { color: var(--ink); }
+/* ACHIEVEMENTS */
+.achieve-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.achieve-card{background:var(--white);border:1px solid var(--border);padding:24px;}
+.achieve-year{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.achieve-title{font-family:'EB Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3;}
+.achieve-desc{font-family:'EB Garamond',serif;font-size:0.9rem;color:var(--ink3);line-height:1.6;}
 
-  /* BELOW FOLD SECTIONS */
-  .section {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 80px 48px;
-  }
-  .section-mono {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .section-title {
-    font-size: 2.4rem;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    margin-bottom: 48px;
-    color: var(--ink);
-  }
-  .section-title em { font-style: italic; color: var(--accent); }
+/* CONTACT */
+.contact-section{background:var(--ink);color:var(--cream2);padding:80px 52px;}
+.contact-inner{max-width:1020px;margin:0 auto;}
+.contact-heading{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;letter-spacing:-0.02em;color:#fff;margin-bottom:12px;}
+.contact-heading em{font-style:italic;color:#8ab4e8;}
+.contact-sub{font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--cream2);margin-bottom:40px;line-height:1.6;}
+.contact-links{display:flex;gap:12px;flex-wrap:wrap;}
+.c-link{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;padding:12px 22px;border:1px solid;transition:all 0.2s;}
+.c-link-p{background:#fff;color:var(--ink);border-color:#fff;}
+.c-link-p:hover{background:var(--cream);}
+.c-link-s{color:var(--cream2);border-color:rgba(255,255,255,0.25);}
+.c-link-s:hover{border-color:#fff;color:#fff;}
+.contact-foot{margin-top:60px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.1);font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;color:rgba(255,255,255,0.3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 
-  /* RESEARCH */
-  .research-card {
-    border: 1px solid rgba(42,92,170,0.2);
-    padding: 32px;
-    background: white;
-    transition: box-shadow 0.3s;
-  }
-  .research-card:hover {
-    box-shadow: 6px 6px 0 rgba(42,92,170,0.15);
-  }
-  .research-venue {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .research-title-text {
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin-bottom: 12px;
-    line-height: 1.35;
-  }
-  .research-authors {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-  .research-link-btn {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-    transition: opacity 0.2s;
-  }
-  .research-link-btn:hover { opacity: 0.7; }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-  .about-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--ink-soft);
-    font-weight: 300;
-  }
-  .about-text p { margin-bottom: 20px; }
-  .about-text strong { color: var(--ink); font-weight: 600; }
-  .about-links { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
-  .about-link {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-soft);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
-  }
-  .about-link::before { content: '↗'; color: var(--accent); }
-  .about-link:hover { color: var(--accent); }
-  .skills-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px;
-  }
-  .skill-entry {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-soft);
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(42,92,170,0.08);
-    letter-spacing: 0.03em;
-  }
-  .skill-entry span { color: var(--accent); }
-
-  /* LEGEND */
-  .legend {
-    position: absolute;
-    bottom: 80px;
-    right: 48px;
-    z-index: 20;
-    background: rgba(245,243,238,0.9);
-    border: 1px solid rgba(42,92,170,0.15);
-    padding: 16px 20px;
-    backdrop-filter: blur(4px);
-  }
-  .legend-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 10px;
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--ink-soft);
-  }
-  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid rgba(42,92,170,0.15);
-    padding: 40px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-mono {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.08em;
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .section { padding: 60px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .legend { display: none; }
-    footer { flex-direction: column; gap: 16px; text-align: center; }
-  }
+@media(max-width:768px){
+  nav{padding:14px 20px;}
+  .nav-links .nav-a{display:none;}
+  .hero-info{left:20px;max-width:85vw;top:80px;}
+  .hero-legend{display:none;}
+  .section{padding:60px 24px;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .exp-item{grid-template-columns:1fr;gap:8px;}
+  .contact-section{padding:60px 24px;}
+}
 </style>
 </head>
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
 <nav>
   <div>
     <div class="nav-name">Yaxita Amin</div>
-    <div class="nav-mono">MS · Applied Machine Learning · UMD</div>
+    <div class="nav-sub">MS · Applied Machine Learning · UMD</div>
   </div>
-  <ul class="nav-links">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="mailto:yaxita@umd.edu">Contact</a></li>
-  </ul>
+  <div class="nav-links">
+    <a href="#projects-section" class="nav-a">Projects</a>
+    <a href="#research-section" class="nav-a">Research</a>
+    <a href="#experience-section" class="nav-a">Experience</a>
+    <a href="#about-section" class="nav-a">About</a>
+    <a href="https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view" class="nav-cta" target="_blank">Resume →</a>
+  </div>
 </nav>
 
-<!-- HERO: THE CONTOUR PLOT -->
+<!-- HERO -->
 <section id="hero">
-  <svg id="contour-svg" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="soft-glow">
-        <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-
-    <!-- Contour ellipses centered around the "optimum" ~(580, 440) -->
-    <ellipse cx="580" cy="440" rx="60" ry="40" fill="none" stroke="rgba(42,92,170,0.45)" stroke-width="1"/>
-    <ellipse cx="580" cy="440" rx="120" ry="80" fill="none" stroke="rgba(42,92,170,0.35)" stroke-width="1"/>
-    <ellipse cx="580" cy="440" rx="200" ry="130" fill="none" stroke="rgba(42,92,170,0.28)" stroke-width="1"/>
-    <ellipse cx="580" cy="440" rx="300" ry="195" fill="none" stroke="rgba(42,92,170,0.22)" stroke-width="1"/>
-    <ellipse cx="580" cy="440" rx="420" ry="270" fill="none" stroke="rgba(42,92,170,0.17)" stroke-width="1"/>
-    <ellipse cx="580" cy="440" rx="560" ry="360" fill="none" stroke="rgba(42,92,170,0.12)" stroke-width="1"/>
-    <ellipse cx="580" cy="440" rx="720" ry="460" fill="none" stroke="rgba(42,92,170,0.08)" stroke-width="1"/>
-    <ellipse cx="580" cy="440" rx="900" ry="580" fill="none" stroke="rgba(42,92,170,0.05)" stroke-width="1"/>
-
-    <!-- Gradient descent path: starts far right, curves to center -->
-    <path id="gd-path"
-      d="M 1280 320 C 1100 310, 950 380, 850 400 C 780 415, 740 410, 700 420 C 660 428, 640 430, 620 435 C 600 438, 590 440, 580 440"
-      fill="none"
-      stroke="rgba(42,92,170,0.6)"
-      stroke-width="1.5"
-      stroke-dasharray="6 4"
-      id="path-line"
-    />
-
-    <!-- Path animation overlay (solid) -->
-    <path
-      d="M 1280 320 C 1100 310, 950 380, 850 400 C 780 415, 740 410, 700 420 C 660 428, 640 430, 620 435 C 600 438, 590 440, 580 440"
-      fill="none"
-      stroke="var(--accent)"
-      stroke-width="2"
-      stroke-dasharray="2000"
-      stroke-dashoffset="2000"
-      id="path-animated"
-    >
-      <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="2.5s" fill="freeze" begin="0.5s"/>
-    </path>
-
-    <!-- PROJECT NODES -->
-
-    <!-- Node 1: Research (far right, starting point) -->
-    <g class="project-node" data-project="0" transform="translate(1280,320)">
-      <circle class="node-outer" r="10" fill="var(--node-research)" opacity="0.9"/>
-      <circle r="4" fill="white"/>
-      <text class="node-label" x="-8" y="-18" text-anchor="middle">Research</text>
-      <text class="node-label" x="-8" y="-6" text-anchor="middle" font-size="9" opacity="0.7">U-Net Architectures</text>
-    </g>
-
-    <!-- Node 2: RL Trading -->
-    <g class="project-node" data-project="1" transform="translate(850,400)">
-      <circle class="node-outer" r="10" fill="var(--node-rl)" opacity="0.9"/>
-      <circle r="4" fill="white"/>
-      <text class="node-label" x="0" y="-18" text-anchor="middle">RL / FinML</text>
-      <text class="node-label" x="0" y="-6" text-anchor="middle" font-size="9" opacity="0.7">FinAgent Trading</text>
-    </g>
-
-    <!-- Node 3: Model Optimization -->
-    <g class="project-node" data-project="2" transform="translate(700,420)">
-      <circle class="node-outer" r="10" fill="var(--node-opt)" opacity="0.9"/>
-      <circle r="4" fill="white"/>
-      <text class="node-label" x="0" y="-18" text-anchor="middle">Optimization</text>
-      <text class="node-label" x="0" y="-6" text-anchor="middle" font-size="9" opacity="0.7">BERT Compression</text>
-    </g>
-
-    <!-- Node 4: NLP / Multi-Agent -->
-    <g class="project-node" data-project="3" transform="translate(620,435)">
-      <circle class="node-outer" r="10" fill="var(--node-nlp)" opacity="0.9"/>
-      <circle r="4" fill="white"/>
-      <text class="node-label" x="0" y="22" text-anchor="middle">NLP / Agents</text>
-      <text class="node-label" x="0" y="34" text-anchor="middle" font-size="9" opacity="0.7">MultiAgent QA</text>
-    </g>
-
-    <!-- Node 5: Computer Vision (optimum/center) -->
-    <g class="project-node" data-project="4" transform="translate(580,440)">
-      <circle r="20" fill="rgba(42,92,170,0.1)" class="node-pulse"/>
-      <circle class="node-outer" r="12" fill="var(--node-cv)" opacity="0.95" filter="url(#soft-glow)"/>
-      <circle r="5" fill="white"/>
-      <text class="node-label" x="0" y="-28" text-anchor="middle" font-size="12" font-weight="500">Computer Vision</text>
-      <text class="node-label" x="0" y="-16" text-anchor="middle" font-size="9" opacity="0.7">LeafDoctorAI · Memory Profiler</text>
-      <text x="0" y="4" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" pointer-events="none">θ*</text>
-    </g>
-
-    <!-- Axis labels -->
-    <text x="700" y="880" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="rgba(42,92,170,0.5)" letter-spacing="2">ML COMPLEXITY →</text>
-    <text x="20" y="460" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="rgba(42,92,170,0.5)" letter-spacing="2" transform="rotate(-90,20,460)">MODEL DEPTH →</text>
-
-    <!-- Coordinate ticks -->
-    <line x1="100" y1="850" x2="1300" y2="850" stroke="rgba(42,92,170,0.15)" stroke-width="1"/>
-    <line x1="100" y1="50" x2="100" y2="850" stroke="rgba(42,92,170,0.15)" stroke-width="1"/>
-  </svg>
-
-  <div class="hero-text">
-    <div class="hero-label">Portfolio · 2026</div>
-    <h1 class="hero-name">Yaxita <em>Amin</em></h1>
-    <p class="hero-desc">ML Researcher navigating the loss landscape of AI — from computer vision to autonomous systems</p>
-    <div class="hero-status">
-      <div class="status-dot"></div>
-      Graduate Research · UMD · Graduating May 2026
-    </div>
+  <canvas id="contour-canvas"></canvas>
+  <div class="hero-info">
+    <div class="hero-eyebrow">Portfolio · 2026</div>
+    <h1 class="hero-name">ML Researcher<br>exploring the<br><em>loss landscape</em></h1>
+    <p class="hero-desc">Graduate researcher at UMD — building multimodal AI, robotic preference learning, and production ML systems.</p>
+    <div class="hero-badge"><div class="status-dot"></div>Graduate Research · UMD · May 2026</div>
   </div>
-
-  <!-- Legend -->
-  <div class="legend">
-    <div class="legend-title">Project Categories</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--node-research)"></div>Research / Publications</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--node-rl)"></div>RL / Financial ML</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--node-opt)"></div>Model Optimization</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--node-nlp)"></div>NLP / Multi-Agent</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--node-cv)"></div>Computer Vision · θ*</div>
+  <div class="hero-legend">
+    <div class="leg-head">Project Categories</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#922418"></div>Research / Publications</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#9c5210"></div>RL / Financial ML</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#165c38"></div>ML Systems</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#52217a"></div>Model Optimization</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#1a4fa0"></div>NLP · CV · Agents</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#085858"></div>Robotics · θ* Global Min</div>
   </div>
+  <div class="hero-hint">Click nodes to explore projects</div>
+</section>
 
-  <div class="scroll-hint">Scroll</div>
+<div id="node-tooltip">
+  <div class="tt-cat" id="tt-cat"></div>
+  <div class="tt-name" id="tt-name"></div>
+  <div class="tt-hint">Click to explore →</div>
+</div>
+
+<div id="modal-overlay">
+  <div id="modal">
+    <button class="modal-x" onclick="closeModal()">✕ Close</button>
+    <div class="m-cat" id="m-cat"></div>
+    <h2 class="m-title" id="m-title"></h2>
+    <p class="m-desc" id="m-desc"></p>
+    <hr class="m-hr">
+    <div class="m-metrics" id="m-metrics"></div>
+    <div class="m-tags" id="m-tags"></div>
+    <div class="m-btns" id="m-btns"></div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects-section">
+  <div class="section">
+    <div class="s-eyebrow">Technical Projects</div>
+    <h2 class="s-heading">What I've <em>Built</em></h2>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
 </section>
 
 <!-- RESEARCH -->
-<section id="research">
+<section id="research-section" class="section-alt">
   <div class="section">
-    <div class="section-mono">Publications</div>
-    <h2 class="section-title">Research <em>Work</em></h2>
-    <div class="research-card">
-      <div class="research-venue">IET Conference Proceedings · PICET 2025 · First Author · Peer-Reviewed</div>
-      <div class="research-title-text">A Comparative Study of U-Net Architectures for Change Detection in Satellite Images</div>
-      <div class="research-authors">Yaxita Amin — Gujarat Technological University · VGEC</div>
-      <p style="font-size:1rem; color:var(--ink-soft); line-height:1.7; margin-bottom:20px; font-weight:300;">
-        Benchmarked 18+ transformer-augmented U-Net variants on geospatial change detection datasets. 
-        Authored modular research pipelines enabling systematic ablation studies across encoder-decoder families,
-        quantifying accuracy-efficiency-complexity trade-offs at scale.
-      </p>
-      <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" class="research-link-btn" target="_blank">Read Paper →</a>
+    <div class="s-eyebrow">Publications</div>
+    <h2 class="s-heading">Research <em>Work</em></h2>
+    <div class="pub-card">
+      <div class="pub-venue">IET Conference Proceedings · PICET 2025 · First Author · Peer-Reviewed</div>
+      <div class="pub-title">A Comparative Study of U-Net Architectures for Change Detection in Satellite Images</div>
+      <div class="pub-authors">Yaxita Amin — Gujarat Technological University · VGEC</div>
+      <div class="pub-desc">Benchmarked 18+ transformer-augmented U-Net variants on geospatial change detection datasets. Authored modular research pipelines enabling systematic ablation studies across encoder-decoder families, quantifying accuracy-efficiency-complexity trade-offs at scale. Achieved state-of-the-art accuracy across multiple geospatial benchmarks.</div>
+      <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" class="pub-link" target="_blank">Read Paper →</a>
+      <a href="https://arxiv.org/abs/2506.07925" class="pub-link" target="_blank">arXiv →</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience-section">
+  <div class="section">
+    <div class="s-eyebrow">Experience</div>
+    <h2 class="s-heading">Where I've <em>Worked</em></h2>
+    <div class="exp-item">
+      <div class="exp-date">Aug 2025 – Present</div>
+      <div>
+        <div class="exp-role">Graduate Research Collaborator</div>
+        <div class="exp-org">University of Maryland, College Park</div>
+        <div class="exp-desc">Building scalable robotic preference datasets and advancing SCAND/VLA-style preference learning pipelines for complex multimodal decision-making tasks. Designing evaluation frameworks integrating visual, language, and trajectory signals for robust preference modeling. Driving empirical studies on human-in-the-loop learning systems to improve model alignment with human preferences.</div>
+        <div class="exp-tags"><span class="exp-tag">PyTorch</span><span class="exp-tag">TensorFlow</span><span class="exp-tag">Reinforcement Learning</span><span class="exp-tag">Multimodal ML</span><span class="exp-tag">Computer Vision</span><span class="exp-tag">NLP</span></div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jan 2024 – Jun 2024</div>
+      <div>
+        <div class="exp-role">Computer Vision Research Intern</div>
+        <div class="exp-org">Gujarat Technological University – VGEC</div>
+        <div class="exp-desc">Conducted comparative evaluation of 18+ U-Net architectures with attention and transformer components for satellite change detection, achieving state-of-the-art accuracy on geospatial datasets. Authored modular research pipelines enabling systematic ablation studies. Published first-author paper at IET PICET 2025 conference.</div>
+        <div class="exp-tags"><span class="exp-tag">Python</span><span class="exp-tag">PyTorch</span><span class="exp-tag">TensorFlow</span><span class="exp-tag">Computer Vision</span><span class="exp-tag">Transformers</span><span class="exp-tag">U-Net</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" style="background:white; border-top: 1px solid rgba(42,92,170,0.1); border-bottom: 1px solid rgba(42,92,170,0.1);">
+<section id="about-section" class="section-alt">
   <div class="section">
-    <div class="section-mono">About</div>
-    <h2 class="section-title">The <em>Researcher</em></h2>
+    <div class="s-eyebrow">About</div>
+    <h2 class="s-heading">The <em>Researcher</em></h2>
     <div class="about-grid">
       <div>
         <div class="about-text">
-          <p>I'm a Master's student in Applied Machine Learning at the <strong>University of Maryland, College Park</strong>, graduating May 2026. My work sits at the intersection of robotics, preference learning, and multimodal AI systems.</p>
+          <p>I'm a Master's student in Applied Machine Learning at <strong>University of Maryland, College Park</strong>, graduating May 2026. My work lives at the intersection of robotics, preference learning, and multimodal AI systems.</p>
           <p>Currently building scalable robotic preference datasets and advancing VLA-style preference learning pipelines — designing evaluation frameworks that integrate <strong>visual, language, and trajectory signals</strong> for complex multimodal decision-making.</p>
-          <p>I care about AI that works in the real world: reliable, interpretable, and efficient. From 80% model compression to state-of-the-art satellite change detection, I build things that ship.</p>
+          <p>I care about AI that works in the real world: reliable, interpretable, and efficient. From 80% model compression to state-of-the-art satellite change detection, I build things that ship and matter.</p>
+          <p>Previously at <strong>Gujarat Technological University – VGEC</strong> where I earned my B.E. in Information Technology (2020–2024) and published my first research paper as first author.</p>
         </div>
         <div class="about-links">
-          <a href="https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view" class="about-link" target="_blank">View Resume</a>
-          <a href="https://github.com/YaxitaAmin" class="about-link" target="_blank">GitHub — YaxitaAmin</a>
-          <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="about-link" target="_blank">LinkedIn Profile</a>
-          <a href="mailto:yaxita@umd.edu" class="about-link">yaxita@umd.edu</a>
+          <a href="https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view" class="al" target="_blank">View Resume</a>
+          <a href="https://github.com/YaxitaAmin" class="al" target="_blank">GitHub — YaxitaAmin</a>
+          <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="al" target="_blank">LinkedIn Profile</a>
+          <a href="https://arxiv.org/abs/2506.07925" class="al" target="_blank">arXiv Paper</a>
+          <a href="mailto:yaxita@umd.edu" class="al">yaxita@umd.edu · 240-791-2848</a>
         </div>
       </div>
       <div>
-        <div class="section-mono" style="margin-bottom:16px;">Core Skills</div>
-        <div class="skills-list">
-          <div class="skill-entry"><span>▸</span> PyTorch / TensorFlow</div>
-          <div class="skill-entry"><span>▸</span> Reinforcement Learning</div>
-          <div class="skill-entry"><span>▸</span> Computer Vision</div>
-          <div class="skill-entry"><span>▸</span> LLM Fine-tuning</div>
-          <div class="skill-entry"><span>▸</span> Multi-agent Systems</div>
-          <div class="skill-entry"><span>▸</span> Model Compression</div>
-          <div class="skill-entry"><span>▸</span> Distributed Training</div>
-          <div class="skill-entry"><span>▸</span> AWS · Docker · CI/CD</div>
-          <div class="skill-entry"><span>▸</span> Transformers / BERT</div>
-          <div class="skill-entry"><span>▸</span> LangChain / Gemini</div>
-          <div class="skill-entry"><span>▸</span> Semantic Segmentation</div>
-          <div class="skill-entry"><span>▸</span> Python · R · SQL</div>
-        </div>
+        <div class="skills-label">Core Skills</div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">PyTorch / TensorFlow / Scikit-learn</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Reinforcement Learning</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Computer Vision · U-Net · CNNs</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">LLM Fine-tuning · Embeddings</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Multi-agent Pipelines · LangChain</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Model Compression · Distillation</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Distributed Training · Spark MLlib</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">AWS EC2 · S3 · Lambda · Docker</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Transformers · BERT · Attention</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Semantic Segmentation · Change Detection</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Python · R · C++ · SQL · JavaScript</span></div>
+        <div class="skill-row"><span class="skill-bullet">▸</span><span class="skill-name">Gemini API · Multimodal Systems</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-mono">© 2026 Yaxita Amin · College Park, MD</div>
-  <div class="footer-mono">Built with intention · Gradient descent aesthetic</div>
-</footer>
-
-<!-- MODAL -->
-<div id="modal-overlay">
-  <div id="modal">
-    <button class="modal-close" onclick="closeModal()">[ ESC ] Close</button>
-    <div class="modal-category" id="modal-cat"></div>
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-desc" id="modal-desc"></div>
-    <div class="modal-metrics" id="modal-metrics"></div>
-    <div class="modal-tags" id="modal-tags"></div>
-    <div class="modal-links" id="modal-links"></div>
+<!-- ACHIEVEMENTS -->
+<section id="achievements-section">
+  <div class="section">
+    <div class="s-eyebrow">Achievements</div>
+    <h2 class="s-heading">Honours &amp; <em>Recognition</em></h2>
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <div class="achieve-year">2025</div>
+        <div class="achieve-title">IET PICET — First Author Publication</div>
+        <div class="achieve-desc">Published peer-reviewed conference paper on transformer-enhanced U-Net architectures for satellite change detection.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-year">2023</div>
+        <div class="achieve-title">SSIP Grand Finale — Top 10</div>
+        <div class="achieve-desc">Placed Top 10 among 700+ competing teams in state-level innovation challenge.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-year">2023</div>
+        <div class="achieve-title">HackVGEC Organizer</div>
+        <div class="achieve-desc">Led organisation of 200+ participant hackathon, coordinating logistics and technical infrastructure.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-year">2022</div>
+        <div class="achieve-title">Smart India Hackathon</div>
+        <div class="achieve-desc">Selected for national-level competition among thousands of applicants across India.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-year">2024–25</div>
+        <div class="achieve-title">Certifications</div>
+        <div class="achieve-desc">IBM Data Analysis Using Python · Microsoft Azure Fundamentals · AWS Educate: Generative AI.</div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <h2 class="contact-heading">Let's <em>connect</em></h2>
+    <p class="contact-sub">Open to ML research roles, research engineering, and AI positions. Graduating May 2026 — available on OPT / STEM OPT.</p>
+    <div class="contact-links">
+      <a href="mailto:yaxita@umd.edu" class="c-link c-link-p">Email Me →</a>
+      <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="c-link c-link-s" target="_blank">LinkedIn</a>
+      <a href="https://github.com/YaxitaAmin" class="c-link c-link-s" target="_blank">GitHub</a>
+      <a href="https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view" class="c-link c-link-s" target="_blank">Resume</a>
+    </div>
+    <div class="contact-foot">
+      <span>© 2026 Yaxita Amin · College Park, MD · yaxita@umd.edu</span>
+      <span>Navigating the loss landscape of ML</span>
+    </div>
+  </div>
+</section>
 
 <script>
-// Project data
-const projects = [
-  {
-    category: "Research / Publications",
-    color: "var(--node-research)",
-    title: "U-Net Architecture Benchmark",
-    desc: "Comparative evaluation of 18+ U-Net architectures with attention and transformer components for satellite change detection. Achieved state-of-the-art accuracy on geospatial datasets with a modular pipeline for systematic ablation studies.",
-    metrics: [
-      { val: "18+", lbl: "Architectures" },
-      { val: "SOTA", lbl: "Accuracy" },
-      { val: "2025", lbl: "Published" }
-    ],
-    tags: ["PyTorch", "TensorFlow", "Computer Vision", "Transformers", "U-Net", "Research"],
-    links: [
-      { text: "Read Paper", url: "https://digital-library.theiet.org/doi/10.1049/icp.2025.1425", primary: true },
-      { text: "arXiv", url: "https://arxiv.org/abs/2506.07925", primary: false }
-    ]
-  },
-  {
-    category: "Reinforcement Learning / Financial ML",
-    color: "var(--node-rl)",
-    title: "FinAgent — Algorithmic Trading System",
-    desc: "RL-driven trading agents with real-time risk monitoring across volatile market conditions. Aggregates multi-source financial signals for comprehensive market state representations with a portfolio management engine.",
-    metrics: [
-      { val: "Live", lbl: "Market Data" },
-      { val: "RL", lbl: "Architecture" }
-    ],
-    tags: ["Python", "Reinforcement Learning", "Financial ML", "Real-time", "Risk Analysis"],
-    links: [
-      { text: "Live Demo", url: "https://finagentai.streamlit.app/", primary: true },
-      { text: "GitHub", url: "https://github.com/YaxitaAmin/FinAgent", primary: false }
-    ]
-  },
-  {
-    category: "Model Optimization",
-    color: "var(--node-opt)",
-    title: "BERT Model Compression Pipeline",
-    desc: "Achieved 80% model size reduction (440MB → 90MB) while maintaining 91.5% semantic accuracy through pruning, quantization, and knowledge distillation. Delivered 47% latency reduction with validated deployment on AWS EC2.",
-    metrics: [
-      { val: "80%", lbl: "Size ↓" },
-      { val: "91.5%", lbl: "Accuracy" },
-      { val: "47%", lbl: "Latency ↓" }
-    ],
-    tags: ["PyTorch", "Knowledge Distillation", "Quantization", "AWS EC2", "CI/CD"],
-    links: [
-      { text: "GitHub", url: "https://github.com/YaxitaAmin/Modelcompressionsuite", primary: true }
-    ]
-  },
-  {
-    category: "NLP / Multi-Agent Systems",
-    color: "var(--node-nlp)",
-    title: "MultiAgent QA Automation Platform",
-    desc: "Multi-agent LLM system using the Agent-S framework with Google Gemini for automated mobile QA testing. Reduces manual testing effort by 70% with 85.7% task success rate and sub-second execution time.",
-    metrics: [
-      { val: "85.7%", lbl: "Success" },
-      { val: "70%", lbl: "Effort ↓" },
-      { val: "0.25s", lbl: "Execution" }
-    ],
-    tags: ["Python", "LangChain", "Google Gemini", "Multi-agent", "Streamlit"],
-    links: [
-      { text: "Live Demo", url: "https://multiagentqasystem.streamlit.app/", primary: true },
-      { text: "GitHub", url: "https://github.com/YaxitaAmin/MultiAgent_QA_Automation", primary: false }
-    ]
-  },
-  {
-    category: "Computer Vision · θ* (Global Optimum)",
-    color: "var(--node-cv)",
-    title: "LeafDoctorAI + ML Memory Profiler",
-    desc: "Two production-ready computer vision systems: LeafDoctorAI achieves 92%+ accuracy on 10K+ agricultural images with mobile-optimized inference. ML Memory Profiler delivers 4.3× efficiency gains with real-time dashboard comparing PyTorch vs TensorFlow.",
-    metrics: [
-      { val: "92%+", lbl: "CV Accuracy" },
-      { val: "4.3×", lbl: "Efficiency" },
-      { val: "10K+", lbl: "Images" }
-    ],
-    tags: ["CNN", "PyTorch", "Transfer Learning", "Streamlit", "Performance Analysis"],
-    links: [
-      { text: "LeafDoctorAI", url: "https://github.com/YaxitaAmin/LeafDoctorAI", primary: true },
-      { text: "Memory Profiler", url: "https://virtualmemoryprofilingmlmodels.streamlit.app/", primary: false }
-    ]
-  }
+// ═══════════ PROJECT DATA ═══════════
+const PROJECTS = [
+  {id:0,cat:"Research / Publications",cssColor:"#922418",
+   title:"U-Net Architecture Benchmark",
+   desc:"Comparative evaluation of 18+ U-Net architectures with attention and transformer components for satellite change detection. Authored modular research pipelines enabling systematic ablation studies — published first-author at IET PICET 2025.",
+   short:"18+ transformer U-Net variants benchmarked for satellite change detection. First-author IET PICET 2025.",
+   metrics:[{v:"18+",l:"Architectures"},{v:"SOTA",l:"Accuracy"},{v:"2025",l:"Published"}],
+   tags:["PyTorch","TensorFlow","Computer Vision","Transformers","U-Net","Satellite"],
+   links:[{t:"Read Paper",u:"https://digital-library.theiet.org/doi/10.1049/icp.2025.1425",p:true},{t:"arXiv",u:"https://arxiv.org/abs/2506.07925",p:false}],
+   cx:0.78,cy:0.20},
+  {id:1,cat:"RL / Financial ML",cssColor:"#9c5210",
+   title:"FinAgent — Algorithmic Trading",
+   desc:"RL-driven trading agents with real-time risk monitoring across volatile market conditions. Aggregates multi-source financial signals for comprehensive market state representations with a portfolio management engine.",
+   short:"RL trading agents with real-time risk monitoring and multi-source market signal aggregation.",
+   metrics:[{v:"Live",l:"Market Data"},{v:"RL",l:"Architecture"},{v:"Multi",l:"Signals"}],
+   tags:["Python","Reinforcement Learning","Financial ML","Real-time","Risk Analysis","Streamlit"],
+   links:[{t:"Live Demo",u:"https://finagentai.streamlit.app/",p:true},{t:"GitHub",u:"https://github.com/YaxitaAmin/FinAgent",p:false}],
+   cx:0.65,cy:0.28},
+  {id:2,cat:"ML Systems / Performance",cssColor:"#165c38",
+   title:"ML Memory Profiling Framework",
+   desc:"Profiling infrastructure yielding 4.3× memory efficiency gains across deep learning workloads. Demonstrated PyTorch's 60% lower memory footprint vs TensorFlow with a real-time interactive dashboard.",
+   short:"4.3× memory efficiency gains across DL workloads. Real-time PyTorch vs TensorFlow dashboard.",
+   metrics:[{v:"4.3×",l:"Efficiency"},{v:"60%",l:"Memory ↓"},{v:"Live",l:"Dashboard"}],
+   tags:["Python","PyTorch","TensorFlow","Streamlit","Performance","Profiling"],
+   links:[{t:"Live Demo",u:"https://virtualmemoryprofilingmlmodels.streamlit.app/",p:true},{t:"GitHub",u:"https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels",p:false}],
+   cx:0.52,cy:0.37},
+  {id:3,cat:"Model Optimization",cssColor:"#52217a",
+   title:"BERT Compression Pipeline",
+   desc:"Achieved 80% model size reduction (440MB → 90MB) while maintaining 91.5% semantic accuracy through pruning, quantization, and knowledge distillation. 47% latency reduction with CI/CD deployment on AWS EC2.",
+   short:"80% BERT size reduction, 91.5% accuracy retained, 47% latency reduction. Deployed on AWS EC2.",
+   metrics:[{v:"80%",l:"Size ↓"},{v:"91.5%",l:"Accuracy"},{v:"47%",l:"Latency ↓"}],
+   tags:["PyTorch","Knowledge Distillation","Quantization","Pruning","AWS EC2","CI/CD"],
+   links:[{t:"GitHub",u:"https://github.com/YaxitaAmin/Modelcompressionsuite",p:true}],
+   cx:0.40,cy:0.44},
+  {id:4,cat:"NLP / Multi-Agent Systems",cssColor:"#1a4fa0",
+   title:"MultiAgent QA Platform",
+   desc:"Multi-agent LLM system using Agent-S framework with Google Gemini for automated mobile QA testing. 85.7% task success rate, 70% reduction in manual testing effort, 0.25s execution time per test.",
+   short:"LLM multi-agent platform for mobile QA automation. 85.7% success, 70% effort reduction.",
+   metrics:[{v:"85.7%",l:"Success"},{v:"70%",l:"Effort ↓"},{v:"0.25s",l:"Speed"}],
+   tags:["Python","LangChain","Google Gemini","Multi-agent","Streamlit","LLM"],
+   links:[{t:"Live Demo",u:"https://multiagentqasystem.streamlit.app/",p:true},{t:"GitHub",u:"https://github.com/YaxitaAmin/MultiAgent_QA_Automation",p:false}],
+   cx:0.32,cy:0.52},
+  {id:5,cat:"Computer Vision",cssColor:"#1a4fa0",
+   title:"LeafDoctorAI",
+   desc:"Plant disease classification using transfer-learning CNNs achieving 92%+ accuracy on 10K+ agricultural images. Mobile-optimized inference pipeline for resource-constrained deployments with domain adaptation.",
+   short:"92%+ plant disease classification on 10K+ images with mobile-optimized inference pipeline.",
+   metrics:[{v:"92%+",l:"Accuracy"},{v:"10K+",l:"Images"},{v:"Mobile",l:"Ready"}],
+   tags:["CNN","PyTorch","Transfer Learning","Computer Vision","Mobile","Domain Adaptation"],
+   links:[{t:"GitHub",u:"https://github.com/YaxitaAmin/LeafDoctorAI",p:true}],
+   cx:0.26,cy:0.60},
+  {id:6,cat:"Robotics Research · θ* Global Minimum",cssColor:"#085858",
+   title:"VLA Preference Learning @ UMD",
+   desc:"Building scalable robotic preference datasets and advancing SCAND/VLA-style preference learning pipelines for complex multimodal decision-making. Designing evaluation frameworks integrating visual, language, and trajectory signals for robust preference modeling. Human-in-the-loop learning to improve model alignment.",
+   short:"VLA-style preference learning with visual, language, and trajectory signal integration at UMD.",
+   metrics:[{v:"UMD",l:"Research Lab"},{v:"2025–",l:"Ongoing"},{v:"VLA",l:"Architecture"}],
+   tags:["PyTorch","RL","Multimodal ML","Computer Vision","NLP","Preference Learning","Robotics","HiTL"],
+   links:[{t:"Portfolio",u:"https://yaxitaamin.github.io/portfolio/",p:true},{t:"LinkedIn",u:"https://www.linkedin.com/in/yaxita-amin-18317a205",p:false}],
+   cx:0.50,cy:0.50}
 ];
 
-// Custom cursor
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursor-ring');
-let mouseX = 0, mouseY = 0;
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  cursor.style.left = mouseX - 4 + 'px';
-  cursor.style.top = mouseY - 4 + 'px';
-  cursorRing.style.left = mouseX - 16 + 'px';
-  cursorRing.style.top = mouseY - 16 + 'px';
+// ═══════════ BUILD PROJECT CARDS ═══════════
+const grid = document.getElementById('projects-grid');
+PROJECTS.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'proj-card';
+  card.innerHTML = `
+    <div class="proj-card-cat">
+      <div class="proj-card-dot" style="background:${p.cssColor}"></div>
+      <span style="color:${p.cssColor}">${p.cat}</span>
+    </div>
+    <div class="proj-card-title">${p.title}</div>
+    <div class="proj-card-desc">${p.short}</div>
+    <div class="proj-card-tags">${p.tags.slice(0,4).map(t=>`<span class="proj-card-tag">${t}</span>`).join('')}</div>
+    <div class="proj-card-arrow">Explore Project <span>→</span></div>
+  `;
+  card.addEventListener('click', () => openModal(p.id));
+  grid.appendChild(card);
 });
 
-// Contour deformation on mouse move
-const contourSVG = document.getElementById('contour-svg');
-document.addEventListener('mousemove', e => {
-  const rect = contourSVG.getBoundingClientRect();
-  const mx = (e.clientX - rect.left) / rect.width * 1400;
-  const my = (e.clientY - rect.top) / rect.height * 900;
-  const dx = (mx - 580) * 0.015;
-  const dy = (my - 440) * 0.015;
-  const ellipses = contourSVG.querySelectorAll('ellipse');
-  ellipses.forEach((el, i) => {
-    const factor = (i + 1) * 0.3;
-    el.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
-    el.style.transformOrigin = '580px 440px';
-  });
-});
+// ═══════════ CONTOUR CANVAS ═══════════
+const canvas = document.getElementById('contour-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, nodes = [], animT = 0;
 
-// Node interactions
-document.querySelectorAll('.project-node').forEach(node => {
-  node.addEventListener('click', () => {
-    const idx = parseInt(node.dataset.project);
-    openModal(idx);
-  });
-  node.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'scale(2)';
-    cursorRing.style.transform = 'scale(1.5)';
-    cursorRing.style.borderColor = projects[node.dataset.project].color;
-  });
-  node.addEventListener('mouseleave', () => {
-    cursor.style.transform = 'scale(1)';
-    cursorRing.style.transform = 'scale(1)';
-    cursorRing.style.borderColor = 'var(--accent)';
-  });
-});
-
-function openModal(idx) {
-  const p = projects[idx];
-  const overlay = document.getElementById('modal-overlay');
-  document.getElementById('modal-cat').textContent = p.category;
-  document.getElementById('modal-cat').style.color = p.color;
-  document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-desc').textContent = p.desc;
-
-  document.getElementById('modal-metrics').innerHTML = p.metrics.map(m =>
-    `<div class="modal-metric">
-      <span class="modal-metric-val" style="color:${p.color}">${m.val}</span>
-      <span class="modal-metric-lbl">${m.lbl}</span>
-    </div>`
-  ).join('');
-
-  document.getElementById('modal-tags').innerHTML = p.tags.map(t =>
-    `<span class="modal-tag">${t}</span>`
-  ).join('');
-
-  document.getElementById('modal-links').innerHTML = p.links.map(l =>
-    `<a href="${l.url}" target="_blank" class="modal-link ${l.primary ? 'modal-link-primary' : 'modal-link-secondary'}">${l.text}</a>`
-  ).join('');
-
-  overlay.classList.add('active');
+function loss(u, v) {
+  const x = (u-0.5)*8, z = (v-0.5)*8;
+  return 0.07*(x*x+z*z)
+        -3.2*Math.exp(-0.7*(x*x+z*z))
+        -1.6*Math.exp(-0.35*((x-3)*(x-3)+(z-2.5)*(z-2.5)))
+        -1.1*Math.exp(-0.4*((x+2.5)*(x+2.5)+(z+2)*(z+2)))
+        -0.7*Math.exp(-0.5*((x-2)*(x-2)+(z+3)*(z+3)))
+        +0.3*Math.exp(-1.2*(x-z)*(x-z)*0.08)
+        +2.8;
 }
 
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('active');
+const GSIZE = 140;
+let lossGrid = [];
+function buildGrid(){
+  lossGrid=[];
+  for(let j=0;j<=GSIZE;j++){lossGrid[j]=[];for(let i=0;i<=GSIZE;i++)lossGrid[j][i]=loss(i/GSIZE,j/GSIZE);}
+}
+buildGrid();
+
+function resize(){
+  W=canvas.width=canvas.offsetWidth;
+  H=canvas.height=canvas.offsetHeight;
+}
+window.addEventListener('resize',()=>{resize();});
+resize();
+
+function drawScene(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#f6f2e9';
+  ctx.fillRect(0,0,W,H);
+
+  // Filled contour bands
+  const levels=12,minL=-0.9,maxL=3.4;
+  for(let li=levels;li>=0;li--){
+    const thresh=minL+(li/levels)*(maxL-minL);
+    const t=li/levels;
+    const r=Math.round(246-t*30),g=Math.round(242-t*20),b=Math.round(233+t*12);
+    ctx.fillStyle=`rgb(${r},${g},${b})`;
+    ctx.beginPath();
+    for(let j=0;j<GSIZE;j++){
+      for(let i=0;i<GSIZE;i++){
+        if(lossGrid[j][i]>thresh){
+          ctx.rect((i/GSIZE)*W,(j/GSIZE)*H,W/GSIZE+1.2,H/GSIZE+1.2);
+        }
+      }
+    }
+    ctx.fill();
+  }
+
+  // Contour lines
+  for(let li=1;li<10;li++){
+    const thresh=minL+(li/10)*(maxL-minL);
+    const t=li/10;
+    ctx.strokeStyle=`rgba(26,79,160,${0.1+t*0.2})`;
+    ctx.lineWidth=t>0.6?1:0.6;
+    ctx.beginPath();
+    for(let j=0;j<GSIZE;j++){
+      for(let i=0;i<GSIZE;i++){
+        const v00=lossGrid[j][i];
+        const v10=lossGrid[j][i+1]||v00;
+        const v01=lossGrid[j+1]?lossGrid[j+1][i]:v00;
+        if((v00>thresh)!==(v10>thresh)){
+          const tt=(thresh-v00)/(v10-v00);
+          const x=((i+tt)/GSIZE)*W,y=(j/GSIZE)*H;
+          ctx.moveTo(x,y);ctx.lineTo(x,y+H/GSIZE);
+        }
+        if((v00>thresh)!==(v01>thresh)){
+          const tt=(thresh-v00)/(v01-v00);
+          const x=(i/GSIZE)*W,y=((j+tt)/GSIZE)*H;
+          ctx.moveTo(x,y);ctx.lineTo(x+W/GSIZE,y);
+        }
+      }
+    }
+    ctx.stroke();
+  }
 }
 
-document.getElementById('modal-overlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
-});
-
-// Pulse animation for center node
-const centerNode = document.querySelector('[data-project="4"] .node-pulse');
-if (centerNode) {
-  setInterval(() => {
-    centerNode.animate([
-      { r: '18', opacity: '0.3' },
-      { r: '30', opacity: '0' }
-    ], { duration: 1500, iterations: 1 });
-  }, 2000);
+function buildNodes(){
+  nodes=PROJECTS.map(p=>({...p,x:p.cx*W,y:p.cy*H,r:p.id===6?14:10,bobOffset:p.id*0.8}));
 }
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+function drawPath(){
+  if(nodes.length<2) return;
+  const sorted=[...nodes].sort((a,b)=>{
+    return Math.hypot(b.cx-0.5,b.cy-0.5)-Math.hypot(a.cx-0.5,a.cy-0.5);
+  });
+  ctx.beginPath();
+  ctx.moveTo(sorted[0].x,sorted[0].y);
+  for(let i=1;i<sorted.length;i++){
+    const p=sorted[i-1],c=sorted[i];
+    ctx.quadraticCurveTo(p.x,p.y,(p.x+c.x)/2,(p.y+c.y)/2);
+  }
+  ctx.lineTo(sorted[sorted.length-1].x,sorted[sorted.length-1].y);
+  ctx.strokeStyle='rgba(26,79,160,0.5)';
+  ctx.lineWidth=2;
+  ctx.setLineDash([6,4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  // Arrow heads
+  for(let i=0;i<sorted.length-1;i++){
+    const a=sorted[i],b=sorted[i+1];
+    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+    const angle=Math.atan2(b.y-a.y,b.x-a.x);
+    ctx.save();ctx.translate(mx,my);ctx.rotate(angle);
+    ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(-6,-3.5);ctx.lineTo(-6,3.5);ctx.closePath();
+    ctx.fillStyle='rgba(26,79,160,0.55)';ctx.fill();ctx.restore();
+  }
+}
+
+function lighten(hex,amt){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return `rgb(${Math.min(255,r+amt)},${Math.min(255,g+amt)},${Math.min(255,b+amt)})`;
+}
+
+function drawNodes(t){
+  nodes.forEach(n=>{
+    const bob=Math.sin(t+n.bobOffset)*2.8;
+    const nx=n.x,ny=n.y+bob;
+    const isT=n.id===6;
+
+    if(isT){
+      for(let ri=0;ri<3;ri++){
+        const pr=n.r+14+ri*14;
+        ctx.beginPath();ctx.arc(nx,ny,pr,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(8,88,88,${0.18-ri*0.05})`;
+        ctx.lineWidth=1;ctx.stroke();
+      }
+    }
+    if(n.hovered){
+      ctx.beginPath();ctx.arc(nx,ny,n.r+9,0,Math.PI*2);
+      ctx.strokeStyle=n.cssColor+'66';ctx.lineWidth=2;ctx.stroke();
+    }
+
+    // Main circle with gradient
+    const gr=ctx.createRadialGradient(nx-n.r*0.3,ny-n.r*0.3,0,nx,ny,n.r);
+    gr.addColorStop(0,lighten(n.cssColor,50));
+    gr.addColorStop(1,n.cssColor);
+    ctx.beginPath();ctx.arc(nx,ny,n.r,0,Math.PI*2);
+    ctx.fillStyle=gr;ctx.fill();
+
+    // Drop shadow
+    ctx.beginPath();ctx.arc(nx,ny+2,n.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,0,0,0.08)';
+
+    // White dot
+    ctx.beginPath();ctx.arc(nx,ny,n.r*0.3,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.92)';ctx.fill();
+
+    if(isT){
+      ctx.fillStyle='white';
+      ctx.font='bold 8px JetBrains Mono,monospace';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText('θ*',nx,ny);
+    }
+
+    // Label — clear, outside node, larger font
+    const labelAbove = n.cy > 0.55;
+    const lx=nx, ly=labelAbove ? ny-n.r-16 : ny+n.r+18;
+    ctx.font=`${n.hovered?'600':'500'} 11px JetBrains Mono,monospace`;
+    ctx.textAlign='center';ctx.textBaseline='middle';
+
+    // Label background for readability
+    const label=n.title.length>22?n.title.slice(0,20)+'…':n.title;
+    const tw=ctx.measureText(label).width;
+    ctx.fillStyle='rgba(246,242,233,0.82)';
+    ctx.fillRect(lx-tw/2-5,ly-8,tw+10,16);
+
+    ctx.fillStyle=n.hovered?n.cssColor:'#3c3828';
+    ctx.fillText(label,lx,ly);
+  });
+}
+
+function loop(){
+  animT+=0.015;
+  drawScene();
+  buildNodes();
+  drawPath();
+  drawNodes(animT);
+  requestAnimationFrame(loop);
+}
+loop();
+
+// ═══════════ MOUSE EVENTS ═══════════
+const tooltip=document.getElementById('node-tooltip');
+const ttCat=document.getElementById('tt-cat');
+const ttName=document.getElementById('tt-name');
+let hoverId=-1;
+
+canvas.addEventListener('mousemove',e=>{
+  const rect=canvas.getBoundingClientRect();
+  const mx=e.clientX-rect.left,my=e.clientY-rect.top;
+  let found=false;
+  nodes.forEach(n=>{
+    const bob=Math.sin(animT+n.bobOffset)*2.8;
+    const dist=Math.hypot(mx-n.x,my-(n.y+bob));
+    n.hovered=dist<n.r+12;
+    if(n.hovered){
+      found=true;hoverId=n.id;
+      ttCat.textContent=n.cat;ttCat.style.color=n.cssColor;
+      ttName.textContent=n.title;
+      tooltip.classList.add('show');
+      tooltip.style.left=(e.clientX+14)+'px';
+      tooltip.style.top=(e.clientY-14)+'px';
+      canvas.style.cursor='pointer';
     }
   });
+  if(!found){
+    tooltip.classList.remove('show');
+    canvas.style.cursor='default';
+    hoverId=-1;
+    nodes.forEach(n=>n.hovered=false);
+  }
 });
+
+canvas.addEventListener('click',e=>{
+  if(hoverId>=0) openModal(hoverId);
+});
+
+// ═══════════ MODAL ═══════════
+function openModal(id){
+  const p=PROJECTS[id];
+  document.getElementById('m-cat').textContent=p.cat;
+  document.getElementById('m-cat').style.color=p.cssColor;
+  document.getElementById('m-title').textContent=p.title;
+  document.getElementById('m-desc').textContent=p.desc;
+  document.getElementById('m-metrics').innerHTML=p.metrics.map(m=>
+    `<div class="m-metric"><span class="m-val" style="color:${p.cssColor}">${m.v}</span><span class="m-lbl">${m.l}</span></div>`
+  ).join('');
+  document.getElementById('m-tags').innerHTML=p.tags.map(t=>`<span class="m-tag">${t}</span>`).join('');
+  document.getElementById('m-btns').innerHTML=p.links.map(l=>
+    `<a href="${l.u}" target="_blank" class="m-btn ${l.p?'mbp':'mbs'}">${l.t}</a>`
+  ).join('');
+  document.getElementById('modal-overlay').classList.add('on');
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('on');}
+window.closeModal=closeModal;
+document.getElementById('modal-overlay').addEventListener('click',e=>{
+  if(e.target===document.getElementById('modal-overlay')) closeModal();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
 </script>
 </body>
 </html>
