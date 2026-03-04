@@ -1,2 +1,2 @@
 theme: null
-plugins: []
+exclude: ["README.md"]
