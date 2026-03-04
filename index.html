@@ -1,1299 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaxita Amin - ML Engineer & AI Researcher</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background: #0a0a0a;
-            color: #e5e5e5;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        /* Navigation Bar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #1f1f1f;
-            z-index: 1000;
-            padding: 16px 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #9ca3af;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #2563eb;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: #2563eb;
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #e5e5e5;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header Section */
-        header {
-            padding: 140px 0 80px;
-            border-bottom: 1px solid #1f1f1f;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 60px;
-            margin-bottom: 40px;
-        }
-
-        .profile-image {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            flex-shrink: 0;
-            animation: float 3s ease-in-out infinite;
-            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .header-info {
-            flex: 1;
-        }
-
-        .name {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .title {
-            font-size: 1.25rem;
-            color: #9ca3af;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .bio {
-            font-size: 1.05rem;
-            color: #d1d5db;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .current-status {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 8px;
-            padding: 12px 16px;
-            margin-bottom: 24px;
-        }
-
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse-status 2s ease-in-out infinite;
-            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-        }
-
-        @keyframes pulse-status {
-            0% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-            }
-            50% {
-                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-            }
-        }
-
-        .status-text {
-            color: #86efac;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #9ca3af;
-            font-size: 0.95rem;
-        }
-
-        .contact-item i {
-            color: #2563eb;
-            width: 20px;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-secondary {
-            background: #1f1f1f;
-            color: #e5e5e5;
-            border: 1px solid #374151;
-        }
-
-        .btn-secondary:hover {
-            background: #2a2a2a;
-            border-color: #4b5563;
-        }
-
-        /* Research Section */
-        .research-section {
-            padding: 60px 0;
-            border-bottom: 1px solid #1f1f1f;
-        }
-
-        .research-card {
-            background: linear-gradient(135deg, #1e1b4b 0%, #1e3a8a 100%);
-            border: 1px solid #3730a3;
-            border-radius: 12px;
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .research-badge {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .research-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-
-        .research-meta {
-            color: #cbd5e1;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .research-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            color: #1e3a8a;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .research-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Demo Showcase Section */
-        .demo-section {
-            padding: 80px 0;
-            background: #0f0f0f;
-            border-top: 1px solid #1f1f1f;
-            border-bottom: 1px solid #1f1f1f;
-        }
-
-        .demo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .demo-card {
-            background: #141414;
-            border: 1px solid #1f1f1f;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-
-        .demo-card:nth-child(1) { animation-delay: 0.1s; }
-        .demo-card:nth-child(2) { animation-delay: 0.2s; }
-        .demo-card:nth-child(3) { animation-delay: 0.3s; }
-        .demo-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .demo-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: #2563eb;
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
-        }
-
-        .demo-image {
-            width: 100%;
-            height: 220px;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .demo-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .demo-card:hover .demo-image img {
-            transform: scale(1.1);
-        }
-
-        .demo-fallback-icon {
-            font-size: 4rem;
-            color: #2563eb;
-        }
-
-        .demo-info {
-            padding: 20px;
-        }
-
-        .demo-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        .demo-description {
-            font-size: 0.9rem;
-            color: #9ca3af;
-            line-height: 1.5;
-        }
-
-        /* Projects Section */
-        .projects-section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            margin-bottom: 48px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        .section-subtitle {
-            color: #9ca3af;
-            font-size: 1.05rem;
-        }
-
-        .category-section {
-            margin-bottom: 60px;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 48px;
-            padding: 24px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
-            border: 2px solid #2563eb;
-            border-radius: 16px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .category-header:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
-        }
-
-        .category-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
-        }
-
-        .category-info h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 4px;
-        }
-
-        .category-info p {
-            color: #cbd5e1;
-            font-size: 1rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
-        }
-
-        .project-card {
-            background: #141414;
-            border: 1px solid #1f1f1f;
-            border-radius: 12px;
-            padding: 28px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        .project-card:hover {
-            border-color: #2563eb;
-            transform: translateY(-6px);
-            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.2);
-        }
-
-        .project-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .project-icon {
-            font-size: 1.75rem;
-            color: #2563eb;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 12px;
-        }
-
-        .project-link-icon {
-            color: #6b7280;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .project-link-icon:hover {
-            color: #2563eb;
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 12px;
-        }
-
-        .project-description {
-            color: #9ca3af;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .tech-tag {
-            background: #1f1f1f;
-            color: #9ca3af;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            border: 1px solid #2a2a2a;
-        }
-
-        .project-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 12px;
-            padding-top: 16px;
-            border-top: 1px solid #1f1f1f;
-        }
-
-        .metric {
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #2563eb;
-            display: block;
-        }
-
-        .metric-label {
-            font-size: 0.8rem;
-            color: #6b7280;
-        }
-
-        /* Skills Section */
-        .skills-section {
-            padding: 80px 0;
-            background: #0f0f0f;
-            border-top: 1px solid #1f1f1f;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 16px;
-        }
-
-        .skill-item {
-            background: #141414;
-            border: 1px solid #1f1f1f;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .skill-item:hover {
-            border-color: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        .skill-icon {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            color: #2563eb;
-        }
-
-        .skill-name {
-            font-size: 0.9rem;
-            color: #d1d5db;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 0;
-            border-top: 1px solid #1f1f1f;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .social-link {
-            width: 44px;
-            height: 44px;
-            background: #141414;
-            border: 1px solid #1f1f1f;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9ca3af;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        .footer-text {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 32px;
-            }
-
-            .name {
-                font-size: 2.25rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            <div class="category-header::before {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaxita Amin</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --ink: #111111;
+  --ink-mid: #444;
+  --ink-light: #888;
+  --border: #dedede;
+  --bg: #ffffff;
+  --paper: #f7f7f7;
+  --accent: #111111;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.7; }
+
+nav {
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--bg); position: sticky; top: 0; z-index: 100;
+}
+.nav-name { font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 1.15rem; color: var(--ink); padding: 18px 0; letter-spacing: 0.01em; }
+.nav-links { display: flex; list-style: none; }
+.nav-links a { display: block; padding: 18px 20px; font-size: 0.88rem; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+
+.page { max-width: 860px; margin: 0 auto; padding: 56px 24px 80px; }
+
+/* HERO */
+.hero { display: grid; grid-template-columns: 1fr 200px; gap: 48px; align-items: start; padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+.hero-left h1 { font-family: 'Crimson Pro', serif; font-size: 2.4rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.subtitle { font-size: 0.9rem; color: var(--ink-light); margin-bottom: 18px; letter-spacing: 0.02em; }
+.hero-left p { color: var(--ink-mid); margin-bottom: 12px; font-size: 0.95rem; }
+a { color: var(--ink); text-decoration: none; border-bottom: 1px solid #bbb; transition: border-color 0.2s; }
+a:hover { border-color: var(--ink); }
+
+.status-badge { display: inline-flex; align-items: center; gap: 7px; background: var(--paper); border: 1px solid var(--border); color: var(--ink-mid); font-size: 0.82rem; padding: 5px 14px; border-radius: 3px; margin-bottom: 18px; }
+.dot { width: 7px; height: 7px; background: var(--ink); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+.contact-list { margin-top: 20px; display: flex; flex-direction: column; gap: 6px; }
+.contact-list a, .contact-static { font-size: 0.88rem; color: var(--ink-mid); display: flex; align-items: center; gap: 9px; border-bottom: none; }
+.contact-list a:hover { color: var(--ink); border-bottom: none; }
+.contact-list i, .contact-static i { width: 14px; font-size: 0.8rem; color: var(--ink-light); }
+
+.hero-right { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.profile-photo { width: 180px; height: 180px; border-radius: 4px; background: var(--paper); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #ccc; overflow: hidden; }
+.profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.link-icons { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.link-icon { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--ink-mid); text-decoration: none; border: 1px solid var(--border) !important; padding: 5px 11px; border-radius: 3px; transition: all 0.2s; background: white; }
+.link-icon:hover { border-color: var(--ink) !important; color: var(--ink); }
+.link-icon i { font-size: 0.82rem; }
+
+/* SECTIONS */
+.section { margin-bottom: 48px; }
+.section-title { font-family: 'Crimson Pro', serif; font-size: 1.35rem; font-weight: 600; color: var(--ink); margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1.5px solid var(--ink); }
+
+/* NEWS */
+.news-list { list-style: none; }
+.news-list li { display: flex; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; align-items: baseline; }
+.news-list li:last-child { border-bottom: none; }
+.news-date { font-size: 0.8rem; color: var(--ink-light); white-space: nowrap; min-width: 72px; }
+
+/* PUBLICATIONS */
+.pub-list { display: flex; flex-direction: column; }
+.pub-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.pub-item:last-child { border-bottom: none; }
+.pub-thumb { width: 110px; height: 72px; background: var(--paper); border: 1px solid var(--border); border-radius: 3px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+.pub-body { flex: 1; }
+.pub-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.45; }
+.pub-title a { color: var(--ink); border-bottom: 1px solid #bbb; }
+.pub-authors { font-size: 0.82rem; color: var(--ink-light); margin-bottom: 3px; font-style: italic; }
+.pub-authors strong { color: var(--ink-mid); font-style: normal; }
+.pub-venue { font-size: 0.82rem; color: var(--ink-mid); margin-bottom: 8px; }
+.pub-venue .vname { font-weight: 600; color: var(--ink); }
+.pub-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.pub-link { font-size: 0.75rem; color: var(--ink-mid); text-decoration: none; border: 1px solid var(--border) !important; padding: 2px 10px; border-radius: 3px; background: white; transition: all 0.2s; display: flex; align-items: center; gap: 5px; }
+.pub-link:hover { border-color: var(--ink) !important; color: var(--ink); }
+
+/* EXPERIENCE */
+.exp-list { display: flex; flex-direction: column; }
+.exp-item { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.exp-item:last-child { border-bottom: none; }
+.exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
+.exp-role { font-size: 0.93rem; font-weight: 500; color: var(--ink); }
+.exp-date { font-size: 0.8rem; color: var(--ink-light); }
+.exp-org { font-size: 0.87rem; color: var(--ink-mid); font-style: italic; margin-bottom: 7px; }
+.exp-bullets { list-style: none; }
+.exp-bullets li { font-size: 0.88rem; color: var(--ink-mid); padding-left: 16px; position: relative; margin-bottom: 3px; }
+.exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--ink-light); font-size: 0.72rem; top: 2px; }
+
+/* PROJECTS */
+.proj-list { display: flex; flex-direction: column; }
+.proj-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); gap: 16px; }
+.proj-item:last-child { border-bottom: none; }
+.proj-left { flex: 1; }
+.proj-name { font-size: 0.93rem; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.proj-name a { color: var(--ink); border-bottom: 1px solid #bbb; }
+.proj-desc { font-size: 0.87rem; color: var(--ink-mid); margin-bottom: 5px; }
+.proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.proj-tag { font-size: 0.72rem; color: var(--ink-light); border: 1px solid var(--border); padding: 1px 8px; border-radius: 3px; background: var(--paper); }
+.proj-right { font-size: 0.82rem; color: var(--ink-mid); font-weight: 500; white-space: nowrap; text-align: right; padding-top: 2px; line-height: 1.8; }
+.proj-right a { color: var(--ink-mid); border-bottom: 1px solid #bbb; font-size: 0.78rem; }
+.proj-right a:hover { color: var(--ink); border-color: var(--ink); }
+
+/* SKILLS */
+.skills-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chip { font-size: 0.82rem; color: var(--ink-mid); border: 1px solid var(--border); padding: 4px 14px; border-radius: 3px; background: white; transition: all 0.2s; cursor: default; }
+.skill-chip:hover { border-color: var(--ink); color: var(--ink); }
+
+footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 24px; font-size: 0.8rem; color: var(--ink-light); }
+
+@media (max-width: 680px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { flex-direction: row; align-items: center; order: -1; }
+  .profile-photo { width: 90px; height: 90px; }
+  nav { padding: 0 16px; }
+  .page { padding: 32px 16px 60px; }
+  .pub-thumb { display: none; }
+  .proj-item { flex-direction: column; gap: 4px; }
+  .nav-links a { padding: 16px 12px; font-size: 0.82rem; }
+}
+</style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="background-animation" id="bgAnimation"></div>
 
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">YA</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#demos">Demos</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
+<nav>
+  <div class="nav-name">Yaxita Amin</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+  </ul>
+</nav>
+
+<div class="page" id="home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <h1>Yaxita Amin</h1>
+      <p class="subtitle">M.S. Applied Machine Learning · University of Maryland, College Park</p>
+
+      <div class="status-badge">
+        <span class="dot"></span>
+        Open to Summer 2026 AI/ML Research Internships
+      </div>
+
+      <p>I am a graduate researcher at the <a href="https://www.umd.edu" target="_blank">University of Maryland, College Park</a>, working on visuomotor navigation, human preference alignment, and robotic systems.</p>
+
+      <p>I am a co-author of <a href="https://arxiv.org/abs/2603.02004" target="_blank">CHOP</a>, a counterfactual human preference supervision framework for aligning VLA navigation policies — targeting <strong>RSS 2026</strong>. My research spans <strong>vision-language-action models</strong>, <strong>RLHF/SFT</strong>, multi-agent systems, and computer vision.</p>
+
+      <p>Previously, I was a Computer Vision Research Intern at <a href="https://www.vgec.ac.in" target="_blank">VGEC, Gujarat Technological University</a>, where I published first-author work on U-Net architectures for satellite change detection at <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" target="_blank">IET PICET 2025</a>.</p>
+
+      <div class="contact-list">
+        <a href="mailto:yaxita@umd.edu"><i class="fas fa-envelope"></i> yaxita@umd.edu</a>
+        <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/YaxitaAmin</a>
+        <a href="https://github.com/YaxitaAmin" target="_blank"><i class="fab fa-github"></i> github.com/YaxitaAmin</a>
+        <div class="contact-static"><i class="fas fa-map-marker-alt"></i> College Park, MD, USA</div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="profile-photo"><i class="fas fa-user"></i></div>
+      <div class="link-icons">
+        <a href="https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view" class="link-icon" target="_blank"><i class="fas fa-file-pdf"></i> CV</a>
+        <a href="https://github.com/YaxitaAmin" class="link-icon" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="link-icon" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://arxiv.org/abs/2603.02004" class="link-icon" target="_blank"><i class="fas fa-file-alt"></i> arXiv</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <div class="section" id="news">
+    <div class="section-title">News</div>
+    <ul class="news-list">
+      <li>
+        <span class="news-date">Mar 2026</span>
+        <span>Co-authored <a href="https://arxiv.org/abs/2603.02004" target="_blank">CHOP</a> — counterfactual preference supervision for visuomotor navigation — uploaded to arXiv, targeting <strong>RSS 2026</strong>.</span>
+      </li>
+      <li>
+        <span class="news-date">Aug 2025</span>
+        <span>Joined the robotics research group at UMD as Graduate Research Collaborator, working on VLA pipelines and the SCAND dataset.</span>
+      </li>
+      <li>
+        <span class="news-date">2025</span>
+        <span>First-author paper accepted at <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" target="_blank">IET PICET 2025</a> — comparative study of 18 U-Net architectures for satellite change detection.</span>
+      </li>
+      <li>
+        <span class="news-date">Aug 2024</span>
+        <span>Started M.S. in Applied Machine Learning at University of Maryland, College Park.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div class="section" id="publications">
+    <div class="section-title">Publications</div>
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-thumb">🤖</div>
+        <div class="pub-body">
+          <div class="pub-title">
+            <a href="https://arxiv.org/abs/2603.02004" target="_blank">CHOP: Counterfactual Human Preference Labels Improve Obstacle Avoidance in Visuomotor Navigation Policies</a>
+          </div>
+          <div class="pub-authors">Gershom Seneviratne, Jianyu An, Vaibhav Shende, Sahire Ellahy, <strong>Yaxita Amin</strong>, Kondapi Manasanjani, Samarth Chopra, Jonathan Deepak Kannan, Dinesh Manocha</div>
+          <div class="pub-venue"><span class="vname">arXiv:2603.02004</span> · University of Maryland, College Park · March 2026 · Targeting RSS 2026</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2603.02004" class="pub-link" target="_blank"><i class="fas fa-file-alt"></i> arXiv</a>
+            <a href="https://arxiv.org/pdf/2603.02004" class="pub-link" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+          </div>
         </div>
-    </nav>
+      </div>
 
-    <!-- Header -->
-    <header id="home">>
-        <div class="container">
-            <div class="header-content">
-                <div class="profile-image">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <div class="header-info">
-                    <h1 class="name">Yaxita Amin</h1>
-                    <p class="title">ML Engineer & AI Researcher</p>
-                    <p class="bio">
-                        Master's student in Applied Machine Learning at University of Maryland, specializing in deep learning, computer vision, and model optimization. Published researcher with expertise in building production-ready ML systems and scalable AI solutions.
-                    </p>
-                    <div class="current-status">
-                        <div class="status-indicator"></div>
-                        <span class="status-text">Currently working on Robotics Research at UMD</span>
-                    </div>
-                    <div class="contact-grid">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>yaxita@umd.edu</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>College Park, MD, USA</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Expected Graduation: May 2026</span>
-                        </div>
-                    </div>
-                    <div class="action-buttons">
-                        <a href="https://drive.google.com/file/d/1moxKHdz23oyN8vCsBzc8hBet_0WWaui3/view?usp=sharing" class="btn btn-primary" target="_blank">
-                            <i class="fas fa-file-pdf"></i>
-                            View Resume
-                        </a>
-                        <a href="https://github.com/YaxitaAmin" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i>
-                            GitHub Profile
-                        </a>
-                        <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                            LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </div>
+      <div class="pub-item">
+        <div class="pub-thumb">🛰️</div>
+        <div class="pub-body">
+          <div class="pub-title">
+            <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" target="_blank">A Comparative Study of U-Net Architectures for Change Detection in Satellite Images</a>
+          </div>
+          <div class="pub-authors"><strong>Yaxita Amin</strong> et al.</div>
+          <div class="pub-venue"><span class="vname">IET Conference Proceedings · PICET 2025</span> · Peer-Reviewed · First Author</div>
+          <div class="pub-links">
+            <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" class="pub-link" target="_blank"><i class="fas fa-external-link-alt"></i> Paper</a>
+          </div>
         </div>
-    </header>
+      </div>
 
-    <!-- Research Section -->
-    <section class="research-section" id="research">
-        <div class="container">
-            <div class="research-card">
-                <div class="research-badge">PUBLISHED RESEARCH</div>
-                <h2 class="research-title">A Comparative Study of U-Net Architectures for Change Detection in Satellite Images</h2>
-                <p class="research-meta">IET Conference Proceedings (PICET 2025) • First Author • Peer-Reviewed</p>
-                <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" class="research-link" target="_blank">
-                    <i class="fas fa-file-alt"></i>
-                    Peer-Reviewed (open access Read Paper on arXiv)
-                </a>
-            </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section" id="experience">
+    <div class="section-title">Research Experience</div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Graduate Research Collaborator</span>
+          <span class="exp-date">Aug 2025 – Present</span>
         </div>
-    </section>
-
-    <!-- Demo Showcase Section -->
-    <section class="demo-section" id="demos">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">At a Glance - Live Demos</h2>
-                <p class="section-subtitle">👆 “Want to see it in action? Just click the image!”</p>
-            </div>
-            <div class="demo-grid">
-                <div class="demo-card" onclick="window.open('https://multiagentssystem.streamlit.app/', '_blank')">
-                    <div class="demo-image">
-                        <img src="Screenshot 2025-10-16 195129.png" alt="MultiAgent QA Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-robot demo-fallback-icon\'></i>'">
-                    </div>
-                    <div class="demo-info">
-                        <h4 class="demo-title">FinAgent Trading System</h4>
-                        <p class="demo-description">Real-time portfolio management with live market data</p>
-                    </div>
-                </div>
-                <div class="demo-card" onclick="window.open('https://finaagentai.streamlit.app/', '_blank')">
-                    <div class="demo-image">
-                        <img src="Screenshot 2025-10-16 195102.png" alt="FinAgent Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-chart-line demo-fallback-icon\'></i>'">
-                    </div>
-                    <div class="demo-info">
-                        <h4 class="demo-title">MultiAgent QA Platform</h4>
-                        <p class="demo-description">Automated mobile testing with LLM agents</p>
-                    </div>
-                </div>
-                <div class="demo-card" onclick="window.open('https://virtualmemoryprofilingmlmodels.streamlit.app/', '_blank')">
-                    <div class="demo-image">
-                        <img src="Screenshot 2025-10-16 195118.png" alt="Memory Profiler Demo" onerror="this.parentElement.innerHTML='<i class=\'fas fa-memory demo-fallback-icon\'></i>'">
-                    </div>
-                    <div class="demo-info">
-                        <h4 class="demo-title">ML Memory Profiler</h4>
-                        <p class="demo-description">Interactive framework comparison dashboard</p>
-                    </div>
-                </div>
-            </div>
+        <div class="exp-org">University of Maryland, College Park</div>
+        <ul class="exp-bullets">
+          <li>Developing large-scale robotic preference datasets for human-in-the-loop learning, improving SCAND and VLA-style pipelines targeting RSS 2026.</li>
+          <li>Co-authored CHOP — counterfactual preference supervision for visuomotor navigation alignment (arXiv:2603.02004).</li>
+          <li>Designing evaluation frameworks for multi-modal signal integration and preference-based robotic decision-making.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Computer Vision Research Intern</span>
+          <span class="exp-date">Jan 2024 – Jun 2024</span>
         </div>
-    </section>
+        <div class="exp-org">Gujarat Technological University – VGEC</div>
+        <ul class="exp-bullets">
+          <li>Comparative analysis of 18 U-Net architectures with attention and transformer modules for satellite change detection.</li>
+          <li>Designed modular ablation pipelines; developed accuracy–efficiency–complexity trade-off metrics.</li>
+          <li>First-author publication in IET Conference Proceedings (PICET 2025).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-    <!-- Projects Section -->
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Technical Projects</h2>
-                <p class="section-subtitle">Production-ready implementations across multiple domains of machine learning and AI</p>
-            </div>
+  <!-- PROJECTS -->
+  <div class="section" id="projects">
+    <div class="section-title">Selected Projects</div>
+    <div class="proj-list">
 
-            <!-- Computer Vision Category -->
-            <div class="category-section">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <div class="category-info">
-                        <h3>Computer Vision & Image Processing</h3>
-                        <p>Deep learning architectures for visual recognition and analysis</p>
-                    </div>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/LeafDoctorAI', '_blank')">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-leaf"></i>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/YaxitaAmin/LeafDoctorAI" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fab fa-github project-link-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">LeafDoctorAI - Agricultural Disease Detection</h3>
-                        <p class="project-description">
-                            Plant disease classification system using CNN and PyTorch with mobile-optimized inference pipeline for real-time diagnosis and treatment recommendations.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">CNN</span>
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">Computer Vision</span>
-                            <span class="tech-tag">Mobile Deployment</span>
-                        </div>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">92%</span>
-                                <span class="metric-label">Accuracy</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">10K+</span>
-                                <span class="metric-label">Images</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model Optimization Category -->
-            <div class="category-section">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-compress-arrows-alt"></i>
-                    </div>
-                    <div class="category-info">
-                        <h3>Model Optimization & Compression</h3>
-                        <p>Techniques for efficient model deployment and resource optimization</p>
-                    </div>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/Modelcompressionsuite', '_blank')">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-compress"></i>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/YaxitaAmin/Modelcompressionsuite" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fab fa-github project-link-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">BERT Model Compression Pipeline</h3>
-                        <p class="project-description">
-                            Advanced compression pipeline for BERT models using quantization, pruning, and knowledge distillation with automated CI/CD deployment on AWS EC2.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">AWS EC2</span>
-                            <span class="tech-tag">Model Optimization</span>
-                            <span class="tech-tag">CI/CD</span>
-                        </div>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">80%</span>
-                                <span class="metric-label">Size Reduction</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">91.5%</span>
-                                <span class="metric-label">Accuracy</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">47%</span>
-                                <span class="metric-label">Latency ↓</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels', '_blank')">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-memory"></i>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fab fa-github project-link-icon"></i>
-                                </a>
-                                <a href="https://virtualmemoryprofilingmlmodels.streamlit.app/" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fas fa-external-link-alt project-link-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">ML Memory Profiling Framework</h3>
-                        <p class="project-description">
-                            Comprehensive memory profiling system with interactive Streamlit dashboard for comparative analysis of PyTorch and TensorFlow memory usage patterns.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Streamlit</span>
-                            <span class="tech-tag">Performance Analysis</span>
-                            <span class="tech-tag">Visualization</span>
-                        </div>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">4.3x</span>
-                                <span class="metric-label">Efficiency</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">60%</span>
-                                <span class="metric-label">Memory ↓</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NLP & Multi-Agent Systems Category -->
-            <div class="category-section">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <div class="category-info">
-                        <h3>NLP & Multi-Agent Systems</h3>
-                        <p>Language models and intelligent agent frameworks</p>
-                    </div>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/MultiAgent_QA_Automation', '_blank')">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/YaxitaAmin/MultiAgent_QA_Automation" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fab fa-github project-link-icon"></i>
-                                </a>
-                                <a href="https://multiagentqasystem.streamlit.app/" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fas fa-external-link-alt project-link-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">MultiAgent QA Automation Platform</h3>
-                        <p class="project-description">
-                            Multi-agent LLM system using Agent-S framework with Google Gemini for automated mobile QA testing, reducing manual testing effort significantly.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Streamlit</span>
-                            <span class="tech-tag">Google Gemini</span>
-                            <span class="tech-tag">LangChain</span>
-                        </div>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">85.7%</span>
-                                <span class="metric-label">Success Rate</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">70%</span>
-                                <span class="metric-label">QA Effort ↓</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">0.25s</span>
-                                <span class="metric-label">Execution</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Algorithmic Trading & Financial ML Category -->
-            <div class="category-section">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="category-info">
-                        <h3>Algorithmic Trading & Financial ML</h3>
-                        <p>Real-time market analysis and automated trading systems</p>
-                    </div>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card" onclick="window.open('https://github.com/YaxitaAmin/FinAgent', '_blank')">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/YaxitaAmin/FinAgent" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fab fa-github project-link-icon"></i>
-                                </a>
-                                <a href="https://finagentai.streamlit.app/" target="_blank" onclick="event.stopPropagation()">
-                                    <i class="fas fa-external-link-alt project-link-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">FinAgent - Algorithmic Trading System</h3>
-                        <p class="project-description">
-                            Production-ready portfolio management system with real-time market analysis, automated trading decisions, and risk assessment for live market conditions.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Financial APIs</span>
-                            <span class="tech-tag">Real-time Processing</span>
-                            <span class="tech-tag">Risk Analysis</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+      <div class="proj-item">
+        <div class="proj-left">
+          <div class="proj-name"><a href="https://github.com/YaxitaAmin/MultiAgent_QA_Automation" target="_blank">Multi-Agent Android QA System</a></div>
+          <div class="proj-desc">Planner → Executor → Verifier → Supervisor pipeline across OpenAI, Claude, and Gemini.</div>
+          <div class="proj-tags"><span class="proj-tag">LangChain</span><span class="proj-tag">Python</span><span class="proj-tag">Streamlit</span></div>
         </div>
-    </section>
+        <div class="proj-right">87% success<br><a href="https://multiagentssystem.streamlit.app/" target="_blank">Demo ↗</a></div>
+      </div>
 
-    <!-- Skills Section -->
-    <section class="skills-section" id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">Core competencies in machine learning, data science, and software engineering</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-python"></i></div>
-                    <div class="skill-name">Python</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-r-project"></i></div>
-                    <div class="skill-name">R</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-fire"></i></div>
-                    <div class="skill-name">PyTorch</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                    <div class="skill-name">TensorFlow</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
-                    <div class="skill-name">Scikit-learn</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-eye"></i></div>
-                    <div class="skill-name">OpenCV</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-aws"></i></div>
-                    <div class="skill-name">AWS EC2</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-docker"></i></div>
-                    <div class="skill-name">Docker</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-                    <div class="skill-name">Git</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-database"></i></div>
-                    <div class="skill-name">Spark MLlib</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-stream"></i></div>
-                    <div class="skill-name">Streamlit</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-flask"></i></div>
-                    <div class="skill-name">Flask</div>
-                </div>
-            </div>
+      <div class="proj-item">
+        <div class="proj-left">
+          <div class="proj-name">Surgical Robot RL Navigation</div>
+          <div class="proj-desc">Q-Learning and DQN for autonomous needle navigation in 3D vasculature with Dockerized deployment.</div>
+          <div class="proj-tags"><span class="proj-tag">PyTorch</span><span class="proj-tag">RL</span><span class="proj-tag">Docker</span></div>
         </div>
-    </section>
+        <div class="proj-right">98–100% success<br>0% collision</div>
+      </div>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://github.com/YaxitaAmin" class="social-link" target="_blank" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" class="social-link" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:yaxita@umd.edu" class="social-link" aria-label="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://arxiv.org/abs/2506.07925" class="social-link" target="_blank" aria-label="Research">
-                    <i class="fas fa-file-alt"></i>
-                </a>
-            </div>
-            <p class="footer-text">&copy; 2025 Yaxita Amin. All rights reserved.</p>
+      <div class="proj-item">
+        <div class="proj-left">
+          <div class="proj-name"><a href="https://github.com/YaxitaAmin/Modelcompressionsuite" target="_blank">BERT Model Compression Pipeline</a></div>
+          <div class="proj-desc">Quantization, pruning, and knowledge distillation with automated CI/CD on AWS EC2.</div>
+          <div class="proj-tags"><span class="proj-tag">PyTorch</span><span class="proj-tag">AWS</span><span class="proj-tag">CI/CD</span></div>
         </div>
-    </footer>
+        <div class="proj-right">80% size ↓<br>47% latency ↓</div>
+      </div>
 
-    <script>
-        // Navigation scroll effect
-        const navbar = document.getElementById('navbar');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+      <div class="proj-item">
+        <div class="proj-left">
+          <div class="proj-name"><a href="https://github.com/YaxitaAmin/FinAgent" target="_blank">Autonomous Portfolio Risk Management</a></div>
+          <div class="proj-desc">6-agent real-time monitoring with ML Anomaly Detector and Risk Scanner on live data streams.</div>
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Isolation Forest</span><span class="proj-tag">Streamlit</span></div>
+        </div>
+        <div class="proj-right"><a href="https://finaagentai.streamlit.app/" target="_blank">Demo ↗</a></div>
+      </div>
 
-            // Update active link based on scroll position
-            let current = '';
-            document.querySelectorAll('section, header, footer').forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
+      <div class="proj-item">
+        <div class="proj-left">
+          <div class="proj-name"><a href="https://github.com/YaxitaAmin/LeafDoctorAI" target="_blank">LeafDoctorAI — Agricultural Disease Detection</a></div>
+          <div class="proj-desc">CNN-based plant disease classification with mobile-optimized inference on 10K+ images.</div>
+          <div class="proj-tags"><span class="proj-tag">CNN</span><span class="proj-tag">PyTorch</span><span class="proj-tag">OpenCV</span></div>
+        </div>
+        <div class="proj-right">92% accuracy</div>
+      </div>
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
+      <div class="proj-item">
+        <div class="proj-left">
+          <div class="proj-name"><a href="https://github.com/YaxitaAmin/Virtual_memory_profiling_MLmodels" target="_blank">ML Memory Profiling Framework</a></div>
+          <div class="proj-desc">Comparative PyTorch vs TensorFlow memory analysis with interactive Streamlit dashboard.</div>
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Profiling</span><span class="proj-tag">Streamlit</span></div>
+        </div>
+        <div class="proj-right">4.3× efficiency<br><a href="https://virtualmemoryprofilingmlmodels.streamlit.app/" target="_blank">Demo ↗</a></div>
+      </div>
 
-        // Smooth scroll for navigation links
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                const offsetTop = targetSection.offsetTop - 80;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            });
-        });
+    </div>
+  </div>
 
-        // Smooth scroll for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Skills</div>
+    <div class="skills-row">
+      <span class="skill-chip">Python</span><span class="skill-chip">PyTorch</span><span class="skill-chip">TensorFlow</span><span class="skill-chip">LangChain</span><span class="skill-chip">LLM Fine-tuning</span><span class="skill-chip">RLHF / SFT</span><span class="skill-chip">Transformers</span><span class="skill-chip">Computer Vision</span><span class="skill-chip">Hugging Face</span><span class="skill-chip">AWS</span><span class="skill-chip">Docker</span><span class="skill-chip">Spark MLlib</span><span class="skill-chip">OpenCV</span><span class="skill-chip">CI/CD</span><span class="skill-chip">Scikit-learn</span><span class="skill-chip">Streamlit</span><span class="skill-chip">Ablation Studies</span><span class="skill-chip">Paper Writing</span>
+    </div>
+  </div>
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+</div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+<footer>
+  Yaxita Amin &nbsp;·&nbsp; yaxita@umd.edu &nbsp;·&nbsp; College Park, MD &nbsp;·&nbsp; Last updated March 2026
+</footer>
 
-        // Observe project cards for animations
-        document.querySelectorAll('.project-card, .skill-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
