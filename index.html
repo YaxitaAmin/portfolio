@@ -119,59 +119,22 @@ a:hover { border-color: var(--ink); }
 footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 24px; font-size: 0.8rem; color: var(--ink-light); }
 
 @media (max-width: 768px) {
-  /* NAV */
   nav { padding: 0 16px; }
   .nav-name { font-size: 1rem; }
   .nav-links a { padding: 16px 10px; font-size: 0.8rem; }
-
-  /* HERO - stack vertically, photo first */
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .hero-right {
-    order: -1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-  }
-  .profile-photo {
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    flex-shrink: 0;
-  }
-  .profile-photo img {
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-  }
-  .link-icons {
-    justify-content: flex-start;
-    gap: 6px;
-  }
-  .link-icon {
-    font-size: 0.72rem;
-    padding: 4px 8px;
-  }
-
-  /* PAGE */
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+  .hero-right { order: -1; flex-direction: row; align-items: center; justify-content: flex-start; gap: 20px; }
+  .profile-photo { width: 100px; height: 100px; min-width: 100px; flex-shrink: 0; }
+  .profile-photo img { width: 100px; height: 100px; min-width: 100px; }
+  .link-icons { justify-content: flex-start; gap: 6px; }
+  .link-icon { font-size: 0.72rem; padding: 4px 8px; }
   .page { padding: 24px 16px 60px; }
-
-  /* NAME */
   .hero-left h1 { font-size: 1.9rem; }
   .subtitle { font-size: 0.85rem; }
   .status-badge { font-size: 0.78rem; padding: 5px 12px; }
-
-  /* PUBS */
   .pub-thumb { display: none; }
-
-  /* PROJECTS */
   .proj-item { flex-direction: column; gap: 4px; }
   .proj-right { text-align: left; }
-
-  /* SECTIONS */
   .section-title { font-size: 1.2rem; }
 }
 </style>
@@ -207,7 +170,7 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 
 
       <p>Previously, I was a Computer Vision Research Intern at <a href="https://www.vgec.ac.in" target="_blank">VGEC, Gujarat Technological University</a>, where I published first-author work on U-Net architectures for satellite change detection at <a href="https://digital-library.theiet.org/doi/10.1049/icp.2025.1425" target="_blank">IET PICET 2025</a>.</p>
       <div class="contact-list">
-        <a href="mailto:yaxita@umd.edu"><i class="fas fa-envelope"></i> yaxita@umd.edu</a>        
+        <a href="mailto:yaxita@umd.edu"><i class="fas fa-envelope"></i> yaxita@umd.edu</a>
         <a href="https://www.linkedin.com/in/yaxita-amin-18317a205" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/YaxitaAmin</a>
         <a href="https://github.com/YaxitaAmin" target="_blank"><i class="fab fa-github"></i> github.com/YaxitaAmin</a>
         <div class="contact-static"><i class="fas fa-map-marker-alt"></i> College Park, MD, USA</div>
@@ -231,12 +194,12 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 
     <ul class="news-list">
       <li>
         <span class="news-date">Mar 2026</span>
-        <span>Currently working on <strong>MLP-Parameterized Lambda in Log-Linear Attention for Time Series Forecasting</strong> — replacing the linear λ layer with a small MLP to improve O(n log n) attention on the ETTh1 benchmark. (MSML 612)</span>
+        <span>Extended <strong>Log-Linear Attention (ICLR 2026)</strong> by replacing static lambda with an input-dependent 2-layer MLP — achieving 99.6% vs 60.9% on MQAR and 10× length generalization improvement. Targeting <strong>NeurIPS 2026</strong>. <a href="https://github.com/YaxitaAmin/log-linear-attention-lamda-MLP" target="_blank">GitHub ↗</a></span>
       </li>
-      <!-- <li>
+      <li>
         <span class="news-date">Mar 2026</span>
-        <span> <a href="https://arxiv.org/abs/2603.02004" target="_blank">CHOP</a> — counterfactual preference supervision for visuomotor navigation — uploaded to arXiv, targeting <strong>RSS 2026</strong>.</span>
-      </li> -->
+        <span><a href="https://arxiv.org/abs/2603.02004" target="_blank">CHOP</a> — counterfactual preference supervision for visuomotor navigation — uploaded to arXiv, targeting <strong>RSS 2026</strong>.</span>
+      </li>
       <li>
         <span class="news-date">Aug 2025</span>
         <span>Joined the robotics research group at UMD as Graduate Research Collaborator, working on VLA pipelines and the SCAND dataset.</span>
@@ -256,7 +219,7 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 
   <div class="section" id="publications">
     <div class="section-title">Publications</div>
     <div class="pub-list">
-<!-- 
+
       <div class="pub-item">
         <div class="pub-thumb">🤖</div>
         <div class="pub-body">
@@ -270,7 +233,7 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 
             <a href="https://arxiv.org/pdf/2603.02004" class="pub-link" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="pub-item">
         <div class="pub-thumb">🛰️</div>
@@ -293,18 +256,6 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 
   <div class="section" id="experience">
     <div class="section-title">Research Experience</div>
     <div class="exp-list">
-      <!-- <div class="exp-item">
-        <div class="exp-header">
-          <span class="exp-role">Graduate Research Collaborator</span>
-          <span class="exp-date">Aug 2025 – Present</span>
-        </div>
-        <div class="exp-org">University of Maryland, College Park</div>
-        <ul class="exp-bullets">
-          <li>Developing large-scale robotic preference datasets for human-in-the-loop learning, improving SCAND and VLA-style pipelines targeting RSS 2026.</li>
-          <li>Co-authored CHOP — counterfactual preference supervision for visuomotor navigation alignment (arXiv:2603.02004).</li>
-          <li>Designing evaluation frameworks for multi-modal signal integration and preference-based robotic decision-making.</li>
-        </ul>
-      </div> -->
       <div class="exp-item">
         <div class="exp-header">
           <span class="exp-role">Computer Vision Research Intern</span>
@@ -327,11 +278,14 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 
 
       <div class="proj-item">
         <div class="proj-left">
-          <div class="proj-name">MLP-Parameterized Lambda in Log-Linear Attention <span style="font-size:0.72rem;font-weight:400;color:var(--ink-light);border:1px solid var(--border);padding:1px 8px;border-radius:3px;margin-left:6px;background:var(--paper);">In Progress</span></div>
-          <div class="proj-desc">Replacing the linear λ layer in Log-Linear Attention with a small MLP (hidden dims 32/64/128) to investigate nonlinear memory weighting for time series forecasting. Evaluated on ETTh1 benchmark.</div>
-          <div class="proj-tags"><span class="proj-tag">PyTorch</span><span class="proj-tag">Transformers</span><span class="proj-tag">Time Series</span><span class="proj-tag">Attention</span></div>
+          <div class="proj-name">
+            <a href="https://github.com/YaxitaAmin/log-linear-attention-lamda-MLP" target="_blank">MLP-Parameterized Lambda in Log-Linear Attention</a>
+            <span style="font-size:0.72rem;font-weight:400;color:var(--ink-light);border:1px solid var(--border);padding:1px 8px;border-radius:3px;margin-left:6px;background:var(--paper);">NeurIPS 2026 target</span>
+          </div>
+          <div class="proj-desc">Extended Log-Linear Attention (ICLR 2026) by replacing the static scalar lambda with an input-dependent 2-layer MLP (hidden dims 32/64/128). Achieves 99.6%±0.1% vs baseline collapse to 60.9%±46.7% on MQAR, and 10× length generalization improvement. Phase 1 complete; language modeling on Wikitext-2 ongoing. Run on Zaratan HPC (H100 GPUs).</div>
+          <div class="proj-tags"><span class="proj-tag">PyTorch</span><span class="proj-tag">Triton</span><span class="proj-tag">HPC · H100</span><span class="proj-tag">Sequence Modeling</span><span class="proj-tag">Attention</span><span class="proj-tag">NeurIPS 2026</span></div>
         </div>
-        <div class="proj-right">O(n log n) attn<br>ETTh1 · MAE/RMSE</div>
+        <div class="proj-right">99.6% MQAR<br>10× length gen<br><a href="https://github.com/YaxitaAmin/log-linear-attention-lamda-MLP" target="_blank">GitHub ↗</a></div>
       </div>
 
       <div class="proj-item">
@@ -401,11 +355,9 @@ footer { border-top: 1px solid var(--border); text-align: center; padding: 28px 
 
 </div>
 
-
 <footer>
-  Yaxita Amin &nbsp;·&nbsp; yaxita@umd.edu &nbsp;·&nbsp; College Park, MD &nbsp;·&nbsp; Last updated March 2026
+  Yaxita Amin &nbsp;·&nbsp; yaxita@umd.edu &nbsp;·&nbsp; College Park, MD &nbsp;·&nbsp; Last updated 2026
 </footer>
-
 
 </body>
 </html>
