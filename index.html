@@ -82,12 +82,14 @@
     display:flex; align-items:center; gap:7px;
     font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--sage);
     margin-bottom:16px;
+    animation:blink 1.4s ease-in-out infinite;
   }
   .avatar-status::before{
     content:''; width:6px; height:6px; background:var(--sage); border-radius:50%;
     animation:pulse 2.4s ease-in-out infinite;
   }
   @keyframes pulse{0%,100%{opacity:1} 50%{opacity:0.35}}
+  @keyframes blink{0%,100%{opacity:1} 50%{opacity:0.4}}
   .social-row{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center;}
   .social-row a{
     width:32px; height:32px; border-radius:50%; border:1px solid var(--rule);
